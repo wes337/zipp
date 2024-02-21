@@ -9,7 +9,7 @@
 
   @include for-phone {
     grid-template-columns: 100%;
-    grid-template-rows: 100% 100%;
+    grid-template-rows: 100vh 100vh;
     padding: 0.6rem;
   }
 
@@ -38,11 +38,31 @@
       }
     }
 
+    button {
+      margin-right: auto;
+      min-width: 350px;
+    }
+
     @include for-phone {
-      translate: 0 calc($top-bar-height * -1);
+      translate: 0;
       z-index: 1;
       flex-direction: column-reverse;
-      gap: 5rem;
+      padding-bottom: 250px;
+
+      button {
+        position: absolute;
+        top: -33vh;
+        left: 0;
+        width: calc(100% - 4.6rem);
+        margin: 0;
+      }
     }
+  }
+
+  .hotline {
+    position: fixed;
+    bottom: -16px;
+    right: 0;
+    filter: drop-shadow(0 20px 0 $color-black);
   }
 }
