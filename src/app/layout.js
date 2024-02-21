@@ -6,9 +6,21 @@ export const metadata = {
   description:
     "Naturally flavored energy drink. The future of the modern American beverage!",
   image: "https://zipp-coral.vercel.app/images/poster.png",
-  metadataBase: new URL("https://zipp-coral.vercel.app"),
   openGraph: {
-    images: "https://zipp-coral.vercel.app/images/poster.png",
+    title: "Zipp",
+    description:
+      "Naturally flavored energy drink. The future of the modern American beverage!",
+    url: "https://zipp-coral.vercel.app",
+    siteName: "Zipp",
+    images: [
+      {
+        url: "https://zipp-coral.vercel.app/images/poster.png",
+        width: 700,
+        height: 545,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
 };
 
