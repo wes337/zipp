@@ -5,6 +5,7 @@ export const metadata = {
   title: "Zipp",
   description:
     "Naturally flavored energy drink. The future of the modern American beverage!",
+  image: "https://zipp-coral.vercel.app/images/poster.png",
 };
 
 export default function RootLayout({ children }) {

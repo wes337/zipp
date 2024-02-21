@@ -59,5 +59,10 @@
         background-position: 50vw 2px;
       }
     }
+
+    @include for-phone {
+      bottom: auto;
+      top: calc($top-bar-height + 5%);
+    }
   }
 }

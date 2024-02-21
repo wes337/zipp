@@ -21,7 +21,8 @@
 
   .lead {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
     justify-content: center;
     text-align: justify;
     translate: -10%;
@@ -38,8 +39,10 @@
     }
 
     @include for-phone {
-      translate: 0 -25%;
+      translate: 0 calc($top-bar-height * -1);
       z-index: 1;
+      flex-direction: column-reverse;
+      gap: 5rem;
     }
   }
 }
