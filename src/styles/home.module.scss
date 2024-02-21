@@ -1,0 +1,45 @@
+@import "@/styles/variables.scss";
+
+.home {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: calc(100vh - $top-bar-height);
+  padding: 1rem;
+
+  @include for-phone {
+    grid-template-columns: 100%;
+    grid-template-rows: 100% 100%;
+    padding: 0.6rem;
+  }
+
+  .can {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lead {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    translate: -10%;
+
+    p {
+      all: unset;
+      font-family: $main-font-bold;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+
+      @include for-phone {
+        font-size: 1.6rem;
+      }
+    }
+
+    @include for-phone {
+      translate: 0 -25%;
+      z-index: 1;
+    }
+  }
+}

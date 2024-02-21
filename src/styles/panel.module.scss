@@ -1,0 +1,14 @@
+@import "@/styles/variables.scss";
+
+.panel {
+  color: $color-dark;
+  background-color: $color-white;
+  border: 0.8rem solid $color-teal;
+  padding: 3rem;
+  border-radius: 3rem;
+
+  @include for-phone {
+    padding: 1.6rem;
+    border-radius: 2rem;
+  }
+}

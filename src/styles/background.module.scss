@@ -1,0 +1,63 @@
+@import "@/styles/variables.scss";
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .checkerboard {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 33%;
+    height: calc(100% - $top-bar-height);
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+
+    @include for-phone {
+      width: 50%;
+    }
+  }
+
+  .fruits {
+    position: fixed;
+    bottom: 5%;
+    left: 0;
+    height: 60px;
+    width: 100vw;
+    z-index: 0;
+    background-color: $color-teal;
+    background-image: url("/images/fruits.png");
+    background-size: 200px 56px;
+    background-repeat: repeat-x;
+    background-position: 0 2px;
+    pointer-events: none;
+    user-select: none;
+
+    animation: stream 25s linear infinite;
+
+    @keyframes stream {
+      0% {
+        background-position: 0 2px;
+      }
+
+      100% {
+        background-position: 50vw 2px;
+      }
+    }
+  }
+}
