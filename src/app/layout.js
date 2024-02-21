@@ -4,7 +4,7 @@ import "@/styles/globals.scss";
 export const metadata = {
   title: "Zipp",
   description:
-    "Naturally flavored energy drink. The future of modern American beverage!",
+    "Naturally flavored energy drink. The future of the modern American beverage!",
 };
 
 export default function RootLayout({ children }) {
