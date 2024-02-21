@@ -5,16 +5,18 @@
   z-index: 2;
 
   video {
-    width: auto;
     height: 115%;
     margin-top: -10%;
+    width: 100%;
     pointer-events: none;
     user-select: none;
+    object-fit: cover;
   }
 
   .background {
     position: fixed;
     z-index: -1;
+    width: auto;
     height: 200vh;
     left: -25%;
     top: -25%;
