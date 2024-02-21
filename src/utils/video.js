@@ -1,18 +1,5 @@
+import { isIOS, isMobileBrowser, isSafari } from "./browser";
+
 export const supportsHEVCAlpha = () => {
-  if (typeof window === "undefined") {
-    return;
-  }
-
-  const navigator = window.navigator;
-  const ua = navigator.userAgent.toLowerCase();
-  const hasMediaCapabilities = !!(
-    navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo
-  );
-
-  const isSafari =
-    ua.indexOf("safari") != -1 &&
-    !(ua.indexOf("chrome") != -1) &&
-    ua.indexOf("version/") != -1;
-
-  return isSafari && hasMediaCapabilities;
+  return isSafari() || (isMobileBrowser() && isIOS());
 };
