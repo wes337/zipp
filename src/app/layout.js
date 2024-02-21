@@ -8,7 +8,7 @@ export const metadata = {
   image: "https://zipp-coral.vercel.app/images/poster.png",
   metadataBase: new URL("https://zipp-coral.vercel.app"),
   openGraph: {
-    images: "/images/poster.png",
+    images: "https://zipp-coral.vercel.app/images/poster.png",
   },
 };
 
