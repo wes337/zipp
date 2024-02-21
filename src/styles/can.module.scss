@@ -4,13 +4,36 @@
   height: 90%;
   z-index: 2;
 
-  video {
+  video,
+  img {
     height: 115%;
     margin-top: -10%;
     width: 100%;
     pointer-events: none;
     user-select: none;
     object-fit: cover;
+  }
+
+  img {
+    filter: drop-shadow(0 0 2rem rgba($color-white, 0.5));
+    animation: float 10s linear infinite;
+
+    @keyframes float {
+      0% {
+        filter: drop-shadow(0 0 2rem rgba($color-white, 0.5));
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        filter: drop-shadow(0 0 1rem rgba($color-teal, 0.75));
+        transform: translateY(-1%) rotate(-1deg);
+      }
+
+      100% {
+        filter: drop-shadow(0 0 2rem rgba($color-white, 0.5));
+        transform: translateY(0) rotate(2deg);
+      }
+    }
   }
 
   .background {
@@ -40,7 +63,8 @@
     height: 100%;
     z-index: 1;
 
-    video {
+    video,
+    img {
       height: 100%;
       margin-top: 0;
     }
