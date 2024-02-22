@@ -11,12 +11,17 @@
     grid-template-columns: 100%;
     grid-template-rows: 100vh 100vh;
     padding: 0.6rem;
+    margin-top: -2rem;
   }
 
   .can {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include for-phone {
+      margin-top: -3rem;
+    }
   }
 
   .lead {
@@ -29,6 +34,7 @@
 
     p {
       all: unset;
+
       font-family: $main-font-bold;
       font-size: 2rem;
       letter-spacing: -0.5px;
@@ -41,7 +47,6 @@
     button {
       margin-right: auto;
       min-width: 350px;
-      max-width: 80vw;
     }
 
     @include for-phone {
@@ -55,7 +60,7 @@
         top: -33vh;
         left: 0;
         min-width: auto;
-        width: calc(100% - 4.6rem);
+        width: calc(100% - 4.8rem);
         margin: 0;
         translate: 0;
       }
