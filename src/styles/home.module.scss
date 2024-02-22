@@ -41,27 +41,30 @@
     button {
       margin-right: auto;
       min-width: 350px;
+      max-width: 80vw;
     }
 
     @include for-phone {
       translate: 0;
       z-index: 1;
       flex-direction: column-reverse;
-      padding-bottom: 250px;
+      padding: 250px 0;
 
       button {
         position: absolute;
         top: -33vh;
         left: 0;
+        min-width: auto;
         width: calc(100% - 4.6rem);
         margin: 0;
+        translate: 0;
       }
     }
   }
 
   .hotline {
     position: fixed;
-    bottom: -16px;
+    bottom: 0;
     right: 0;
     filter: drop-shadow(0 20px 0 $color-black);
   }

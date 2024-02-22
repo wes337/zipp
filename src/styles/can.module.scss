@@ -62,6 +62,7 @@
   @include for-phone {
     height: 100%;
     z-index: 1;
+    overflow: hidden;
 
     video,
     img {
