@@ -11,7 +11,6 @@
     grid-template-columns: 100%;
     grid-template-rows: 100vh 100vh;
     padding: 0.6rem;
-    margin-top: -3rem;
   }
 
   .can {
@@ -20,7 +19,7 @@
     justify-content: center;
 
     @include for-phone {
-      margin-top: -3rem;
+      align-items: flex-start;
     }
   }
 
@@ -35,12 +34,15 @@
 
     p {
       all: unset;
-
       font-family: $main-font-bold;
       font-size: 2rem;
       letter-spacing: -0.5px;
 
       @include for-phone {
+        font-size: 1.4rem;
+      }
+
+      @include for-short-desktop {
         font-size: 1.6rem;
       }
     }
@@ -63,6 +65,7 @@
         min-width: auto;
         width: calc(100% - 4.8rem);
         margin: 0;
+        margin-top: -5rem;
         translate: 0;
       }
     }
