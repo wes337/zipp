@@ -1,10 +1,10 @@
 "use client";
 
-import { isSafari } from "@/utils/browser";
+import { isIOS, isSafari } from "@/utils/browser";
 import styles from "@/styles/can.module.scss";
 
 export default function Can() {
-  const useImage = isSafari();
+  const useImage = isSafari() || isIOS();
 
   if (useImage) {
     return (
