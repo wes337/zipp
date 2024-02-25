@@ -21,7 +21,7 @@ export default function Can() {
         <source src={"/videos/can.webm"} type="video/webm" />
       </video>
       <video className={styles.background} autoPlay playsInline muted loop>
-        <source src={"/videos/can.webm"} type="video/webm" />
+        <source src={"/videos/can-bg.mp4"} type="video/webm" />
       </video>
     </div>
   );

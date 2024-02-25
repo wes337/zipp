@@ -38,40 +38,27 @@
 
   .background {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    margin-top: $top-bar-height;
+    object-fit: cover;
     z-index: -1;
-    width: auto;
-    height: 200vh;
-    left: -25%;
-    top: -25%;
-    transform: rotate(-30deg);
-    filter: hue-rotate(0deg) blur(10px) contrast(3) saturate(2);
-    opacity: 0.2;
-    animation: hueRotate 5s linear infinite;
-
-    @keyframes hueRotate {
-      0% {
-        filter: hue-rotate(0deg) blur(10px) contrast(3) saturate(2);
-      }
-
-      100% {
-        filter: hue-rotate(360deg) blur(10px) contrast(3) saturate(2);
-      }
-    }
+    opacity: 0.4;
+    overflow: clip;
   }
 
   @include for-phone {
     height: 90%;
     z-index: 1;
-    overflow: hidden;
+    overflow: clip;
 
     video,
     img {
       height: 100%;
       margin-top: 0;
-    }
-
-    .background {
-      left: -150%;
     }
   }
 }
