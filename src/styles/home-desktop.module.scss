@@ -1,0 +1,113 @@
+@import "@/styles/variables.scss";
+
+.home-desktop {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: calc(100vh - var(--top-bar-height));
+  max-height: -webkit-fill-available;
+  padding: 1rem;
+
+  @include for-phone {
+    display: none;
+  }
+
+  .can {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lead {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    translate: -10%;
+    z-index: 2;
+
+    @include for-narrow-desktop {
+      translate: -5%;
+    }
+
+    p {
+      all: unset;
+      font-family: $main-font-bold;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+      padding: 0 2rem;
+      text-shadow: 0 0 0.4rem rgba($color-dark, 0.1);
+
+      @include for-short-desktop {
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+      }
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 2rem;
+
+      .item {
+        display: flex;
+      }
+
+      img {
+        max-width: 206px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        padding: 2rem;
+        margin: auto;
+        transition: transform ease 0.2s, filter ease 0.2s;
+        filter: none;
+
+        &:hover {
+          transform: scale(1.1);
+          filter: drop-shadow(0 0 1rem $color-white);
+        }
+      }
+
+      @include for-short-desktop {
+        max-height: 80px;
+      }
+    }
+
+    button {
+      margin-top: 3rem;
+      margin-left: 2rem;
+      margin-right: auto;
+    }
+  }
+
+  .hotline {
+    position: fixed;
+    bottom: -1rem;
+    right: 0;
+    filter: drop-shadow(0 20px 0 $color-black);
+    transition: bottom ease 0.2s;
+    width: 140px;
+
+    @include for-large-desktop {
+      width: 200px;
+    }
+
+    @include for-narrow-desktop {
+      width: 200px;
+      left: -90%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    &:hover {
+      bottom: -0.1rem;
+    }
+  }
+}

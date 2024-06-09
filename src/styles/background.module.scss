@@ -6,16 +6,33 @@
   left: 0;
   width: 100%;
   height: 100%;
+  max-height: -webkit-fill-available;
   pointer-events: none;
   user-select: none;
   z-index: 0;
 
-  video {
-    width: 100%;
+  img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
-    pointer-events: none;
-    user-select: none;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+
+  @include for-phone {
+    .mobile {
+      display: block;
+    }
+
+    .desktop {
+      display: none;
+    }
   }
 
   .checkerboard {
@@ -23,13 +40,14 @@
     bottom: 0;
     right: 0;
     width: 33%;
-    height: calc(100% - $top-bar-height);
+    height: calc(100% - var(--top-bar-height));
     pointer-events: none;
     user-select: none;
     z-index: 1;
+    opacity: 0.75;
 
     @include for-phone {
-      width: 50%;
+      display: none;
     }
   }
 
@@ -62,7 +80,8 @@
 
     @include for-phone {
       bottom: auto;
-      top: calc($top-bar-height + 5%);
+      top: calc(var(--top-bar-height) + 2%);
+      opacity: 0.5;
     }
   }
 }

@@ -6,6 +6,18 @@
   margin: 0;
 }
 
+:root {
+  --top-bar-height: 120px;
+
+  @include for-phone {
+    --top-bar-height: 80px;
+  }
+
+  @include for-short-desktop {
+    --top-bar-height: 80px;
+  }
+}
+
 body {
   max-width: 1920px;
   font-family: $main-font;
@@ -16,7 +28,7 @@ body {
 main {
   position: relative;
   z-index: 1;
-  margin-top: $top-bar-height;
+  margin-top: var(--top-bar-height);
 }
 
 a {

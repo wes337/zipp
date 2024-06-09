@@ -8,9 +8,8 @@ export default function Can() {
 
   if (useImage) {
     return (
-      <div className={styles.can}>
+      <div className={styles["can-image"]}>
         <img src="/images/can.png" alt="" />
-        <img className={styles.background} src="/images/can.png" alt="" />
       </div>
     );
   }

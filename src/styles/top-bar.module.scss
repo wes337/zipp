@@ -8,14 +8,36 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: $top-bar-height;
+  height: var(--top-bar-height);
   z-index: 2;
-  background-color: rgba($color-white, 0.5);
+  background-color: rgba($color-white, 0.75);
   border-bottom: 0.4rem solid $color-white;
+
+  .desktop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  @include for-phone {
+    .desktop {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
+    }
+  }
 
   .logo {
     height: 100%;
     padding: 0.2rem;
+
+    @include for-phone {
+      padding: 0.4rem;
+    }
 
     img {
       height: 100%;

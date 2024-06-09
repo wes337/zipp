@@ -19,8 +19,17 @@
   text-align: center;
 
   @include for-phone {
-    padding: 1.6rem;
+    padding: 1rem;
     border-radius: 2rem;
+    border: 0.4rem solid $color-teal;
+    font-size: 2rem;
+  }
+
+  @include for-short-desktop {
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 0.4rem solid $color-teal;
+    font-size: 2rem;
   }
 
   &:disabled {

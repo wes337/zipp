@@ -5,7 +5,16 @@ export default function TopBar() {
   return (
     <div className={styles["top-bar"]}>
       <Link className={styles.logo} href="/">
-        <img src="/images/logo.png" alt="Zipp" />
+        <img
+          className={styles.desktop}
+          src="/images/logo-full.png"
+          alt="Zipp"
+        />
+        <img
+          className={styles.mobile}
+          src="/images/logo-with-cherry.png"
+          alt="Zipp"
+        />
       </Link>
     </div>
   );

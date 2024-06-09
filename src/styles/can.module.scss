@@ -43,7 +43,7 @@
     width: 100%;
     height: 100%;
     z-index: 2;
-    margin-top: $top-bar-height;
+    margin-top: var(--top-bar-height);
     object-fit: cover;
     z-index: -1;
     opacity: 0.4;
@@ -51,7 +51,7 @@
   }
 
   @include for-phone {
-    height: 90%;
+    height: 80vh;
     z-index: 1;
     overflow: clip;
 
@@ -59,6 +59,37 @@
     img {
       height: 100%;
       margin-top: 0;
+    }
+  }
+}
+
+.can-image {
+  display: flex;
+  width: 100%;
+  height: 80vh;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: drop-shadow(0 0 2rem rgba($color-white, 0.5));
+    animation: float 10s linear infinite;
+
+    @keyframes float {
+      0% {
+        filter: drop-shadow(0 0 2rem rgba($color-white, 0.5));
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        filter: drop-shadow(0 0 1rem rgba($color-teal, 0.75));
+        transform: translateY(-1%) rotate(-1deg);
+      }
+
+      100% {
+        filter: drop-shadow(0 0 2rem rgba($color-white, 0.5));
+        transform: translateY(0) rotate(2deg);
+      }
     }
   }
 }
