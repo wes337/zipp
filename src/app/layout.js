@@ -5,16 +5,16 @@ export const metadata = {
   title: "Zipp",
   description:
     "Naturally flavored energy drink. The future of the modern American beverage!",
-  image: "https://zipp-coral.vercel.app/images/poster.png",
+  image: "https://www.zipp.rip/images/poster.png",
   openGraph: {
     title: "Zipp",
     description:
       "Naturally flavored energy drink. The future of the modern American beverage!",
-    url: "https://zipp-coral.vercel.app",
+    url: "https://www.zipp.rip",
     siteName: "Zipp",
     images: [
       {
-        url: "https://zipp-coral.vercel.app/images/poster.png",
+        url: "https://www.zipp.rip/images/poster.png",
         width: 700,
         height: 545,
       },

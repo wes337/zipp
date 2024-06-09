@@ -2,9 +2,9 @@ import { IconShoppingCart } from "@tabler/icons-react";
 import TopBar from "@/components/top-bar";
 import Can from "@/components/can";
 import Button from "@/components/button";
+import Marquee from "@/components/marquee";
 import { LEAD_TEXT } from "./text";
 import styles from "@/styles/home-desktop.module.scss";
-import Marquee from "@/components/marquee";
 
 export default function HomeDesktop() {
   return (
