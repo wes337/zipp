@@ -12,6 +12,13 @@
     display: none;
   }
 
+  .marquee {
+    position: fixed;
+    top: var(--top-bar-height);
+    left: 0;
+    width: 100%;
+  }
+
   .can {
     position: relative;
     display: flex;
@@ -50,6 +57,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      max-height: 100px;
       margin-bottom: 2rem;
 
       .item {

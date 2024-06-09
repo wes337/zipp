@@ -11,6 +11,7 @@
   height: var(--top-bar-height);
   z-index: 2;
   background-color: rgba($color-white, 0.75);
+  background-image: linear-gradient($color-white, transparent);
   border-bottom: 0.4rem solid $color-white;
 
   .desktop {

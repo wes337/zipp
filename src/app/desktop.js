@@ -4,11 +4,18 @@ import Can from "@/components/can";
 import Button from "@/components/button";
 import { LEAD_TEXT } from "./text";
 import styles from "@/styles/home-desktop.module.scss";
+import Marquee from "@/components/marquee";
 
 export default function HomeDesktop() {
   return (
     <div className={styles["home-desktop"]}>
       <TopBar />
+      <div className={styles.marquee}>
+        <Marquee
+          text="- Unzipp Your Mindd - Make then... Now - Liquid Time - Gift Of Drink "
+          duration="60s"
+        />
+      </div>
       <div className={styles.can}>
         <Can />
       </div>

@@ -1,4 +1,5 @@
 import Can from "@/components/can";
+import Marquee from "@/components/marquee";
 import TopBar from "@/components/top-bar";
 import styles from "@/styles/home-mobile.module.scss";
 
@@ -26,6 +27,10 @@ export default function HomeMobile() {
       <div className={styles.boosts}>
         <img src="/images/boosts.png" alt="" />
       </div>
+      <div className={styles.soon}>
+        <Marquee text="- Coming Soon " />
+      </div>
+      <div className={styles.footer}>&copy; iBubbbz LLC 2024</div>
     </div>
   );
 }
