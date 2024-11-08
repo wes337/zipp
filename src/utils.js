@@ -1,3 +1,5 @@
+export const CDN_URL = "https://w-img.b-cdn.net/zipp";
+
 export const detectBrowser = () => {
   try {
     let userAgent = navigator.userAgent;
@@ -88,4 +90,12 @@ export const isVerySmallScreen = () => {
   } catch {
     return false;
   }
+};
+
+var debounceTimer;
+export const debounce = (fn, delay) => {
+  return () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => fn.apply(this, arguments), delay);
+  };
 };

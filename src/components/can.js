@@ -1,6 +1,6 @@
 "use client";
 
-import { isIOS, isSafari } from "@/utils/browser";
+import { isIOS, isSafari } from "@/utils";
 import styles from "@/styles/can.module.scss";
 
 export default function Can() {
