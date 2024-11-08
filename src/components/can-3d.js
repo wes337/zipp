@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
@@ -7,120 +7,109 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { CDN_URL, debounce } from "@/utils";
 import styles from "@/styles/can-3d.module.scss";
 
+const CAMERA_CONFIG = {
+  fov: 60,
+  near: 0.1,
+  far: 1000,
+  position: { z: 5 },
+};
+
+const MATERIAL_CONFIG = {
+  roughness: 0.1,
+  metalness: 0.75,
+};
+
+const CONTROLS_CONFIG = {
+  enablePan: false,
+  enableDamping: true,
+  enableZoom: false,
+  autoRotate: true,
+  autoRotateSpeed: 0.005,
+};
+
 export default function Can3D() {
-  useEffect(() => {
-    const container = document.getElementById("can-3d");
-    const canvas = document.getElementById("can-3d-canvas");
+  const containerRef = useRef(null);
+  const rendererRef = useRef(null);
+  const sceneRef = useRef(null);
+  const cameraRef = useRef(null);
+  const controlsRef = useRef(null);
+  const frameIdRef = useRef(null);
 
-    if (!container) {
-      return;
-    }
+  const setupRenderer = useCallback((container, canvas) => {
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      canvas,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
 
-    var renderer;
-    var scene;
-    var camera;
-    var controls;
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    renderer = setupRenderer(container, canvas);
-    scene = setupScene(renderer);
-    camera = setupCamera(container);
-    controls = addControls(renderer, camera);
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
-    };
-
-    loadModel(renderer, scene, animate);
-
-    const onResize = () => {
-      if (!container || !canvas) {
-        return;
-      }
-
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-    };
-
-    const debouncedOnResize = debounce(onResize, 200);
-
-    window.addEventListener("resize", debouncedOnResize);
-
-    return () => {
-      window.removeEventListener("resize", debouncedOnResize);
-    };
+    return renderer;
   }, []);
 
-  return (
-    <div id="can-3d" className={styles["can-3d"]}>
-      <canvas id="can-3d-canvas" />
-    </div>
-  );
-}
+  const setupScene = useCallback((renderer) => {
+    const scene = new THREE.Scene();
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
 
-function setupRenderer(container, canvas) {
-  const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    canvas,
-  });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setClearColor(0x000000, 0);
-  container.appendChild(renderer.domElement);
+    scene.environment = pmremGenerator.fromScene(
+      new RoomEnvironment(),
+      0.04
+    ).texture;
 
-  return renderer;
-}
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
 
-function addControls(renderer, camera) {
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, 0, 0);
-  controls.update();
-  controls.enablePan = false;
-  controls.enableDamping = true;
-  controls.enableZoom = false;
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 0.005;
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
 
-  return controls;
-}
+    return scene;
+  }, []);
 
-function setupCamera(container) {
-  const camera = new THREE.PerspectiveCamera(
-    60,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-  );
-  camera.position.z = 5;
+  const setupCamera = useCallback((container) => {
+    const camera = new THREE.PerspectiveCamera(
+      CAMERA_CONFIG.fov,
+      container.clientWidth / container.clientHeight,
+      CAMERA_CONFIG.near,
+      CAMERA_CONFIG.far
+    );
 
-  return camera;
-}
+    camera.position.set(0, 0, CAMERA_CONFIG.position.z);
 
-function setupScene(renderer) {
-  const scene = new THREE.Scene();
-  const pmremGenerator = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmremGenerator.fromScene(
-    new RoomEnvironment(),
-    0.04
-  ).texture;
+    return camera;
+  }, []);
 
-  return scene;
-}
+  const setupControls = useCallback((camera, domElement) => {
+    const controls = new OrbitControls(camera, domElement);
+    Object.assign(controls, CONTROLS_CONFIG);
+    controls.target.set(0, 0, 0);
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.1;
+    controls.update();
+    return controls;
+  }, []);
 
-function loadModel(renderer, scene, animate) {
-  const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load(`${CDN_URL}/3d/texture-2.png`);
+  const loadModel = useCallback(async (scene, onLoad) => {
+    const textureLoader = new THREE.TextureLoader();
+    const gltfLoader = new GLTFLoader();
 
-  new GLTFLoader().load(
-    "/3d/can.glb",
-    (gltf) => {
+    const texture = await textureLoader.loadAsync(
+      `${CDN_URL}/3d/texture-2.png`
+    );
+
+    gltfLoader.load(`/3d/can.glb`, (gltf) => {
       gltf.scene.traverse((node) => {
         if (node.isMesh) {
-          node.material.roughness = 0.1;
-          node.material.metalness = 0.75;
+          node.material.roughness = MATERIAL_CONFIG.roughness;
+          node.material.metalness = MATERIAL_CONFIG.metalness;
           node.material.needsUpdate = true;
+          node.castShadow = true;
+          node.receiveShadow = true;
         }
 
         if (node.name === "Cylinder001_1") {
@@ -128,14 +117,89 @@ function loadModel(renderer, scene, animate) {
         }
       });
 
-      const model = gltf.scene;
-      scene.add(model);
+      scene.add(gltf.scene);
+      onLoad();
+    });
+  }, []);
 
-      renderer.setAnimationLoop(animate);
-    },
-    undefined,
-    (error) => {
-      console.error(error);
+  const animate = useCallback(() => {
+    if (
+      !controlsRef.current ||
+      !rendererRef.current ||
+      !sceneRef.current ||
+      !cameraRef.current
+    ) {
+      return;
     }
+
+    controlsRef.current.update();
+    rendererRef.current.render(sceneRef.current, cameraRef.current);
+    frameIdRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  const handleResize = useCallback(() => {
+    if (!containerRef.current || !rendererRef.current || !cameraRef.current) {
+      return;
+    }
+
+    const container = containerRef.current;
+    cameraRef.current.aspect = container.clientWidth / container.clientHeight;
+    cameraRef.current.updateProjectionMatrix();
+    rendererRef.current.setSize(container.clientWidth, container.clientHeight);
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const canvas = document.getElementById("canvas");
+
+    if (!container || !canvas) {
+      return;
+    }
+
+    rendererRef.current = setupRenderer(container, canvas);
+    sceneRef.current = setupScene(rendererRef.current);
+    cameraRef.current = setupCamera(container);
+    controlsRef.current = setupControls(
+      cameraRef.current,
+      rendererRef.current.domElement
+    );
+
+    frameIdRef.current = requestAnimationFrame(animate);
+
+    loadModel(sceneRef.current, () => {
+      animate();
+    });
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(container);
+
+    return () => {
+      if (frameIdRef.current) {
+        cancelAnimationFrame(frameIdRef.current);
+      }
+      resizeObserver.disconnect();
+      rendererRef.current?.dispose();
+      controlsRef.current?.dispose();
+    };
+  }, [
+    setupRenderer,
+    setupScene,
+    setupCamera,
+    loadModel,
+    animate,
+    handleResize,
+  ]);
+
+  return (
+    <>
+      <div ref={containerRef} className={styles["can-3d"]}>
+        <canvas id="canvas" />
+      </div>
+      <div className={styles["can-background"]}>
+        <video className={styles.background} autoPlay playsInline muted loop>
+          <source src={"/videos/can-bg.mp4"} type="video/webm" />
+        </video>
+      </div>
+    </>
   );
 }
