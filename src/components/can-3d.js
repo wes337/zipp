@@ -112,9 +112,9 @@ function setupScene(renderer) {
 function loadModel(renderer, scene, animate) {
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load(`${CDN_URL}/3d/texture-2.png`);
-  const loader = new GLTFLoader();
 
-  loader.loadAsync(`${CDN_URL}/3d/can.glb`).then(
+  new GLTFLoader().load(
+    "/3d/can.glb",
     (gltf) => {
       gltf.scene.traverse((node) => {
         if (node.isMesh) {
