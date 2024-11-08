@@ -1,4 +1,4 @@
-import Can from "@/components/can";
+import Can3D from "@/components/can-3d";
 import Marquee from "@/components/marquee";
 import TopBar from "@/components/top-bar";
 import styles from "@/styles/home-mobile.module.scss";
@@ -8,7 +8,7 @@ export default function HomeMobile() {
     <div className={styles["home-mobile"]}>
       <TopBar />
       <div className={styles.can}>
-        <Can />
+        <Can3D />
       </div>
       <div className={styles.info}>
         <div className={styles.item}>

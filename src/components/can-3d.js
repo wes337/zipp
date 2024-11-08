@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { CDN_URL } from "@/utils";
+import { CDN_URL, isVerySmallScreen } from "@/utils";
 import styles from "@/styles/can-3d.module.scss";
 
 const CAMERA_CONFIG = {
@@ -24,11 +24,12 @@ const CONTROLS_CONFIG = {
   enableDamping: true,
   enableZoom: false,
   autoRotate: true,
-  autoRotateSpeed: 0.005,
+  autoRotateSpeed: 0.1,
 };
 
 export default function Can3D() {
   const containerRef = useRef(null);
+  const canvasRef = useRef(null);
   const rendererRef = useRef(null);
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
@@ -88,8 +89,6 @@ export default function Can3D() {
     const controls = new OrbitControls(camera, domElement);
     Object.assign(controls, CONTROLS_CONFIG);
     controls.target.set(0, 0, 0);
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.1;
     controls.update();
     return controls;
   }, []);
@@ -99,10 +98,10 @@ export default function Can3D() {
     const gltfLoader = new GLTFLoader();
 
     const texture = await textureLoader.loadAsync(
-      `${CDN_URL}/3d/texture-2.png`
+      `${CDN_URL}/3d/texture-3.png`
     );
 
-    gltfLoader.load(`/3d/can.glb`, (gltf) => {
+    gltfLoader.load(`${CDN_URL}/3d/can.glb`, (gltf) => {
       gltf.scene.traverse((node) => {
         if (node.isMesh) {
           node.material.roughness = MATERIAL_CONFIG.roughness;
@@ -116,6 +115,10 @@ export default function Can3D() {
           node.material.map = texture;
         }
       });
+
+      if (isVerySmallScreen()) {
+        gltf.scene.scale.set(0.9, 0.9, 0.9);
+      }
 
       scene.add(gltf.scene);
       onLoad();
@@ -150,7 +153,7 @@ export default function Can3D() {
 
   useEffect(() => {
     const container = containerRef.current;
-    const canvas = document.getElementById("canvas");
+    const canvas = canvasRef.current;
 
     if (!container || !canvas) {
       return;
@@ -194,7 +197,7 @@ export default function Can3D() {
   return (
     <>
       <div ref={containerRef} className={styles["can-3d"]}>
-        <canvas id="canvas" />
+        <canvas ref={canvasRef} />
       </div>
       <div className={styles["can-background"]}>
         <video className={styles.background} autoPlay playsInline muted loop>
