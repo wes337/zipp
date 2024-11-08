@@ -24,7 +24,7 @@ const CONTROLS_CONFIG = {
   enableDamping: true,
   enableZoom: false,
   autoRotate: true,
-  autoRotateSpeed: 0.1,
+  autoRotateSpeed: isVerySmallScreen() ? 0.5 : 0.1,
 };
 
 export default function Can3D() {

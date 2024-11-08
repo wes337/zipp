@@ -14,27 +14,9 @@
   background-image: linear-gradient($color-white, transparent);
   border-bottom: 0.4rem solid $color-white;
 
-  .desktop {
-    display: block;
-  }
-
-  .mobile {
-    display: none;
-  }
-
-  @include for-phone {
-    .desktop {
-      display: none;
-    }
-
-    .mobile {
-      display: block;
-    }
-  }
-
   .logo {
     height: 100%;
-    padding: 0.2rem;
+    padding: 1rem;
 
     @include for-phone {
       padding: 0.4rem;

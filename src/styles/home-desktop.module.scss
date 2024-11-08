@@ -78,6 +78,10 @@
           transform: scale(1.1);
           filter: drop-shadow(0 0 1rem $color-white);
         }
+
+        @include for-short-desktop {
+          padding: 1rem 2rem;
+        }
       }
 
       @include for-short-desktop {
