@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { CDN_URL, debounce } from "@/utils";
+import { CDN_URL } from "@/utils";
 import styles from "@/styles/can-3d.module.scss";
 
 const CAMERA_CONFIG = {
@@ -33,7 +33,7 @@ export default function Can3D() {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const controlsRef = useRef(null);
-  const frameIdRef = useRef(null);
+  const animationFrame = useRef(null);
 
   const setupRenderer = useCallback((container, canvas) => {
     const renderer = new THREE.WebGLRenderer({
@@ -134,7 +134,7 @@ export default function Can3D() {
 
     controlsRef.current.update();
     rendererRef.current.render(sceneRef.current, cameraRef.current);
-    frameIdRef.current = requestAnimationFrame(animate);
+    animationFrame.current = requestAnimationFrame(animate);
   }, []);
 
   const handleResize = useCallback(() => {
@@ -164,7 +164,7 @@ export default function Can3D() {
       rendererRef.current.domElement
     );
 
-    frameIdRef.current = requestAnimationFrame(animate);
+    animationFrame.current = requestAnimationFrame(animate);
 
     loadModel(sceneRef.current, () => {
       animate();
@@ -174,8 +174,8 @@ export default function Can3D() {
     resizeObserver.observe(container);
 
     return () => {
-      if (frameIdRef.current) {
-        cancelAnimationFrame(frameIdRef.current);
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
       }
       resizeObserver.disconnect();
       rendererRef.current?.dispose();
@@ -185,6 +185,7 @@ export default function Can3D() {
     setupRenderer,
     setupScene,
     setupCamera,
+    setupControls,
     loadModel,
     animate,
     handleResize,
