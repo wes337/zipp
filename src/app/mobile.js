@@ -1,3 +1,5 @@
+import { ErrorBoundary } from "react-error-boundary";
+import Can from "@/components/can";
 import Can3D from "@/components/can-3d";
 import Marquee from "@/components/marquee";
 import TopBar from "@/components/top-bar";
@@ -8,7 +10,9 @@ export default function HomeMobile() {
     <div className={styles["home-mobile"]}>
       <TopBar />
       <div className={styles.can}>
-        <Can3D />
+        <ErrorBoundary fallback={<Can />}>
+          <Can3D />
+        </ErrorBoundary>
       </div>
       <div className={styles.info}>
         <div className={styles.item}>
@@ -28,9 +32,11 @@ export default function HomeMobile() {
         <img src="/images/boosts.png" alt="" />
       </div>
       <div className={styles.soon}>
-        <Marquee text="- Coming Soon " />
+        <Marquee
+          text="- Unzipp Your Mindd - Make then... Now - Liquid Time - Gift Of Drink "
+          duration="60s"
+        />
       </div>
-      <div className={styles.footer}>&copy; iBubbbz LLC 2024</div>
     </div>
   );
 }

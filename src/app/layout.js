@@ -1,4 +1,6 @@
+import Providers from "@/app/providers";
 import Background from "@/components/background";
+import Footer from "@/components/footer";
 import "@/styles/globals.scss";
 
 export const metadata = {
@@ -28,8 +30,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
-        <Background />
+        <Providers>
+          <main>{children}</main>
+          <Background />
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

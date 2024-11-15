@@ -1,0 +1,81 @@
+@import "@/styles/variables.scss";
+
+.toast {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 7;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+  transform: translateY(100%);
+
+  &.show {
+    transform: translateY(-100%);
+  }
+
+  .body {
+    position: relative;
+    pointer-events: all;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 75vw;
+    max-width: $screen-size-sm;
+
+    background-color: $color-white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0.6rem 0.6rem 1rem rgba($color-black, 0.5);
+    border: 0.4rem solid $color-teal;
+
+    p {
+      all: unset;
+      color: $color-black;
+      font-family: $main-font-bold;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+      padding: 0 2rem;
+      text-shadow: 0 0 0.4rem rgba($color-dark, 0.1);
+
+      @include for-phone {
+        font-size: 1.4rem;
+        letter-spacing: -1.5px;
+      }
+    }
+
+    .action {
+      font-family: $main-font-bold;
+      color: $color-blue;
+      text-transform: uppercase;
+      font-weight: 800;
+      text-decoration: none;
+      margin-top: 0.2rem;
+      font-size: 1.2rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .close {
+      all: unset;
+      position: absolute;
+      top: 0.2rem;
+      right: 0.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-teal;
+      //    filter: drop-shadow(2px 2px 0px $color-black);
+    }
+
+    @include for-phone {
+      width: 95vw;
+    }
+  }
+}

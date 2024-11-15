@@ -1,5 +1,9 @@
+"use client";
+import { useRouter } from "next/navigation";
+import { ErrorBoundary } from "react-error-boundary";
 import { IconShoppingCart } from "@tabler/icons-react";
 import TopBar from "@/components/top-bar";
+import Can from "@/components/can";
 import Can3D from "@/components/can-3d";
 import Button from "@/components/button";
 import Marquee from "@/components/marquee";
@@ -7,6 +11,8 @@ import { LEAD_TEXT } from "./text";
 import styles from "@/styles/home-desktop.module.scss";
 
 export default function HomeDesktop() {
+  const router = useRouter();
+
   return (
     <div className={styles["home-desktop"]}>
       <TopBar />
@@ -17,9 +23,11 @@ export default function HomeDesktop() {
         />
       </div>
       <div className={styles.can}>
-        <Can3D />
+        <ErrorBoundary fallback={<Can />}>
+          <Can3D />
+        </ErrorBoundary>
       </div>
-      <div className={styles.lead}>
+      <div className={styles.lead} onClick={() => router.push("/buy")}>
         <div className={styles.info}>
           <div className={styles.item}>
             <img src="/images/real-juice.png" alt="Made With Real Juice" />
@@ -35,8 +43,8 @@ export default function HomeDesktop() {
           </div>
         </div>
         <p className={styles.text}>{LEAD_TEXT}</p>
-        <Button>
-          <IconShoppingCart stroke={4} size={40} /> Coming Soon
+        <Button onClick={() => router.push("/buy")}>
+          <IconShoppingCart stroke={4} size={40} /> Buy Now
         </Button>
         <div className={styles.hotline}>
           <img src="/images/hotline.png" alt="" />

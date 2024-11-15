@@ -41,4 +41,33 @@
     background-color: $color-teal;
     color: $color-white;
   }
+
+  &.alt {
+    color: $color-white;
+    background-color: $color-teal;
+
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+      color: $color-teal;
+    }
+  }
+
+  &.small {
+    padding: 0.4rem 1.8rem;
+    font-size: 1.8rem;
+    border-width: 0.3rem;
+
+    @include for-phone {
+      padding: 0.4rem 1rem;
+      font-size: 1.4rem;
+      border-width: 0.3rem;
+    }
+
+    @include for-short-desktop {
+      padding: 0.4rem 1rem;
+      font-size: 1.4rem;
+      border-width: 0.3rem;
+    }
+  }
 }

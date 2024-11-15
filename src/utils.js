@@ -92,6 +92,14 @@ export const isVerySmallScreen = () => {
   }
 };
 
+export const isMobileSizedScreen = () => {
+  try {
+    return window.innerWidth <= 1000;
+  } catch {
+    return false;
+  }
+};
+
 var debounceTimer;
 export const debounce = (fn, delay) => {
   return () => {
@@ -99,3 +107,18 @@ export const debounce = (fn, delay) => {
     debounceTimer = setTimeout(() => fn.apply(this, arguments), delay);
   };
 };
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+export function formatPriceInUSD(amount) {
+  return currencyFormatter.format(amount);
+}
+
+export function toCamelCase(text) {
+  return text.replace(/-([a-z])/g, (t) => {
+    return t[1].toUpperCase();
+  });
+}

@@ -1,0 +1,26 @@
+@import "@/styles/variables.scss";
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 0.4rem;
+  text-align: center;
+  font-family: $secondary-font;
+  z-index: 1;
+  opacity: 0.5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
