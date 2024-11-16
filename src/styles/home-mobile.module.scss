@@ -30,10 +30,6 @@
     .item {
       transition: transform ease 0.2s;
 
-      &:hover {
-        transform: scale(1.2);
-      }
-
       img {
         width: 100%;
         height: 100%;

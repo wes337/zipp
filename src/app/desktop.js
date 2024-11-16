@@ -46,9 +46,9 @@ export default function HomeDesktop() {
         <Button onClick={() => router.push("/buy")}>
           <IconShoppingCart stroke={4} size={40} /> Buy Now
         </Button>
-        <div className={styles.hotline}>
+        {/* <div className={styles.hotline}>
           <img src="/images/hotline.png" alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

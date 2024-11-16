@@ -15,8 +15,8 @@ const CAMERA_CONFIG = {
 };
 
 const MATERIAL_CONFIG = {
-  roughness: 0.1,
-  metalness: 0.75,
+  roughness: 0.5,
+  metalness: 0.5,
 };
 
 const CONTROLS_CONFIG = {
@@ -65,7 +65,7 @@ export default function Can3D() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
@@ -117,6 +117,8 @@ export default function Can3D() {
       });
 
       if (isVerySmallScreen()) {
+        gltf.scene.scale.set(0.8, 0.8, 0.8);
+      } else {
         gltf.scene.scale.set(0.9, 0.9, 0.9);
       }
 
