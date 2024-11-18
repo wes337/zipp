@@ -42,6 +42,12 @@ $screen-size-lg: 2500px;
   }
 }
 
+@mixin for-thin-desktop {
+  @media (min-width: 1000px) and (max-width: 1100px) {
+    @content;
+  }
+}
+
 @font-face {
   font-family: "Hydrophilia Iced";
   src: url("/fonts/hydrophilia-iced.ttf") format("truetype");

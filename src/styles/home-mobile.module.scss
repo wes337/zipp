@@ -15,6 +15,15 @@
     display: flex;
   }
 
+  .buy {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    margin-bottom: 0.6rem;
+  }
+
   .info {
     position: fixed;
     bottom: 0;

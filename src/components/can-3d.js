@@ -65,7 +65,7 @@ export default function Can3D() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
@@ -97,9 +97,7 @@ export default function Can3D() {
     const textureLoader = new THREE.TextureLoader();
     const gltfLoader = new GLTFLoader();
 
-    const texture = await textureLoader.loadAsync(
-      `${CDN_URL}/3d/texture-3.png`
-    );
+    const texture = await textureLoader.loadAsync(`/3d/label-dark.png`);
 
     gltfLoader.load(`${CDN_URL}/3d/can.glb`, (gltf) => {
       gltf.scene.traverse((node) => {
@@ -117,7 +115,7 @@ export default function Can3D() {
       });
 
       if (isVerySmallScreen()) {
-        gltf.scene.scale.set(0.8, 0.8, 0.8);
+        gltf.scene.scale.set(0.75, 0.75, 0.75);
       } else {
         gltf.scene.scale.set(0.9, 0.9, 0.9);
       }

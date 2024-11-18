@@ -1,0 +1,122 @@
+@import "@/styles/variables.scss";
+
+.buy-button {
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    @include for-phone {
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      text-align: center;
+      gap: 1rem;
+
+      .size,
+      .price {
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .size {
+    font-family: $main-font;
+    font-size: 1.8rem;
+    color: $color-dark;
+  }
+
+  .price {
+    display: flex;
+    font-family: $main-font-bold;
+    font-size: 2rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    @include for-phone {
+      text-align: center;
+    }
+  }
+
+  .quantity {
+    display: flex;
+    width: 200px;
+    border: 0.3rem solid $color-teal;
+    border-radius: 0.2rem;
+    padding: 0.4rem;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    background-color: $color-white;
+    align-items: center;
+    justify-content: center;
+
+    @include for-phone {
+      width: 150px;
+      width: 100%;
+    }
+
+    span {
+      font-family: $main-font-bold;
+      font-size: 2rem;
+      line-height: 1.4rem;
+      text-align: center;
+      width: 100%;
+
+      @include for-phone {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+      }
+    }
+
+    button {
+      all: unset;
+      cursor: pointer;
+      width: 75px;
+      color: $color-dark;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: $color-teal;
+      }
+    }
+
+    @include for-phone {
+      font-size: 1rem;
+      padding: 0;
+
+      button {
+        height: 24px;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+
+    @include for-thin-desktop {
+      button {
+        padding: 1rem 0.4rem;
+      }
+    }
+
+    @include for-phone {
+      padding: 1rem;
+      margin-bottom: 1rem;
+
+      .buy {
+        display: flex;
+        width: 100%;
+
+        button {
+          width: 100%;
+          padding: 0.2rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
