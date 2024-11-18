@@ -97,7 +97,7 @@ export default function Can3D() {
     const textureLoader = new THREE.TextureLoader();
     const gltfLoader = new GLTFLoader();
 
-    const texture = await textureLoader.loadAsync(`/3d/label-dark.png`);
+    const texture = await textureLoader.loadAsync(`/3d/label-small-dark.png`);
 
     gltfLoader.load(`${CDN_URL}/3d/can.glb`, (gltf) => {
       gltf.scene.traverse((node) => {

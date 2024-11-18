@@ -14,45 +14,95 @@ export default function BuyButton({ product }) {
 
   const productId = product.variants?.[0]?.id || product.id;
 
-  return (
-    <div className={styles["buy-button"]}>
-      <div className={styles.row}>
-        <div className={styles.size}>{product.variants[0].title}</div>
-        <div className={styles.price}>{formatPriceInUSD(product.price)}</div>
-      </div>
-      <div className={styles.buttons}>
-        <div className={styles.quantity}>
-          <button
-            onClick={() => setQuantity((quantity) => Math.max(quantity - 1, 1))}
-          >
-            <IconMinus size={24} />
-          </button>
-          <span>{quantity}</span>
-          <button
-            onClick={() =>
-              setQuantity((quantity) => Math.min(quantity + 1, 10))
-            }
-          >
-            <IconPlus size={24} />
-          </button>
-        </div>
-        <div className={styles.buy}>
-          <Button
-            onClick={async () => {
-              if (loading) {
-                return;
-              }
+  const size = product.variants?.[0]?.title || "12 Pack";
+  const price = formatPriceInUSD(product.price);
 
-              setLoading(true);
-              await buyItNow(productId, quantity);
-              setLoading(false);
-            }}
-            alt
-          >
-            Buy it Now
-          </Button>
+  return (
+    <>
+      <div className={styles["buy-button-desktop"]}>
+        <div className={styles.row}>
+          <div className={styles.size}>{size}</div>
+          <div className={styles.price}>{price}</div>
+        </div>
+        <div className={styles.buttons}>
+          <div className={styles.quantity}>
+            <button
+              onClick={() =>
+                setQuantity((quantity) => Math.max(quantity - 1, 1))
+              }
+            >
+              <IconMinus size={24} />
+            </button>
+            <span>{quantity}</span>
+            <button
+              onClick={() =>
+                setQuantity((quantity) => Math.min(quantity + 1, 10))
+              }
+            >
+              <IconPlus size={24} />
+            </button>
+          </div>
+          <div className={styles.buy}>
+            <Button
+              onClick={async () => {
+                if (loading) {
+                  return;
+                }
+
+                setLoading(true);
+                await buyItNow(productId, quantity);
+                setLoading(false);
+              }}
+              alt
+            >
+              Buy it Now
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+      <div className={styles["buy-button-mobile"]}>
+        <div className={styles.size}>{size}</div>
+        <div className={styles.price}>{price}</div>
+        <div className={styles.row}>
+          <div className={styles.quantity}>
+            <button
+              onClick={() =>
+                setQuantity((quantity) => Math.max(quantity - 1, 1))
+              }
+            >
+              <IconMinus size={24} />
+            </button>
+            <span>{quantity}</span>
+            <button
+              onClick={() =>
+                setQuantity((quantity) => Math.min(quantity + 1, 10))
+              }
+            >
+              <IconPlus size={24} />
+            </button>
+          </div>
+          <div className={styles.buy}>
+            <Button
+              onClick={async () => {
+                if (loading) {
+                  return;
+                }
+
+                setLoading(true);
+                await buyItNow(productId, quantity);
+                setLoading(false);
+              }}
+              alt
+              small
+            >
+              Buy Now
+            </Button>
+          </div>
+        </div>
+        <div className={styles.nutrition}>
+          <Button small>Nutrition Facts</Button>
+        </div>
+      </div>
+    </>
   );
 }

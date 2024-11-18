@@ -1,6 +1,118 @@
 @import "@/styles/variables.scss";
 
-.buy-button {
+.buy-button-mobile {
+  display: none;
+
+  @include for-phone {
+    display: flex;
+  }
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: auto;
+  text-align: center;
+  width: 80vw;
+
+  .size {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+    color: $color-dark;
+  }
+
+  .price {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    margin-bottom: 0.4rem;
+    font-family: $main-font-bold;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .row {
+    display: flex;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  .buy {
+    display: flex;
+    gap: 0.4rem;
+    width: 100%;
+
+    button {
+      font-size: 1rem;
+      width: 100%;
+      padding: 0 0.4rem;
+      white-space: nowrap;
+    }
+  }
+
+  .nutrition {
+    display: flex;
+    width: 100%;
+
+    button {
+      font-size: 1rem;
+      width: 100%;
+      padding: 0.4rem;
+      white-space: nowrap;
+    }
+  }
+
+  .quantity {
+    display: flex;
+    width: 125px;
+    border: 0.3rem solid $color-teal;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    background-color: $color-white;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-family: $main-font-bold;
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    button {
+      all: unset;
+      cursor: pointer;
+      width: 50px;
+      color: $color-dark;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: $color-teal;
+      }
+    }
+  }
+}
+
+.buy-button-desktop {
+  @include for-phone {
+    display: none;
+  }
+
   .row {
     display: flex;
     flex-direction: column;
