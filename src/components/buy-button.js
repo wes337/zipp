@@ -55,8 +55,11 @@ export default function BuyButton({ product }) {
               }}
               alt
             >
-              Buy it Now
+              Buy Now
             </Button>
+          </div>
+          <div className={styles.nutrition}>
+            <Button small>Nutrition Facts</Button>
           </div>
         </div>
       </div>

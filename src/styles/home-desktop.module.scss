@@ -50,6 +50,12 @@
         font-size: 1.4rem;
         line-height: 1.6rem;
       }
+
+      @include for-thin-desktop {
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+        padding: 0 1rem;
+      }
     }
 
     .info {
@@ -59,6 +65,10 @@
       width: 100%;
       max-height: 100px;
       margin-bottom: 2rem;
+
+      @include for-thin-desktop {
+        margin-bottom: 1rem;
+      }
 
       .item {
         display: flex;
@@ -78,6 +88,11 @@
           padding: 1rem 2rem;
           max-height: 100px;
         }
+
+        @include for-thin-desktop {
+          padding: 1rem 2rem;
+          max-height: 100px;
+        }
       }
 
       @include for-short-desktop {
@@ -89,33 +104,13 @@
       margin-top: 2rem;
       margin-left: 2rem;
       margin-right: auto;
-    }
-  }
 
-  .hotline {
-    position: fixed;
-    bottom: -1rem;
-    right: 0;
-    filter: drop-shadow(0 20px 0 $color-black);
-    transition: bottom ease 0.2s;
-    width: 140px;
-
-    @include for-large-desktop {
-      width: 200px;
-    }
-
-    @include for-narrow-desktop {
-      width: 200px;
-      left: -90%;
-    }
-
-    img {
       width: 100%;
-      height: auto;
-    }
 
-    &:hover {
-      bottom: -0.1rem;
+      @include for-thin-desktop {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
     }
   }
 }
