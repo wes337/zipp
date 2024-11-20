@@ -12,6 +12,8 @@ $screen-size-sm: 1100px;
 $screen-size-md: 2000px;
 $screen-size-lg: 2500px;
 
+$cdn-url: "https://w-img.b-cdn.net/zipp";
+
 @mixin for-phone {
   @media (max-width: 800px) {
     @content;
@@ -56,23 +58,23 @@ $screen-size-lg: 2500px;
 
 @font-face {
   font-family: "Hydrophilia Iced";
-  src: url("/fonts/hydrophilia-iced.ttf") format("truetype");
+  src: url($cdn-url + "/fonts/hydrophilia-iced.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Alte Haas Grotesk Regular";
-  src: url("/fonts/alte-haas-grotesk-regular.ttf") format("truetype");
+  src: url($cdn-url + "/fonts/alte-haas-grotesk-regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Orbitron Black";
-  src: url("/fonts/orbitron-black.ttf") format("truetype");
+  src: url($cdn-url + "/fonts/orbitron-black.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Alte Haas Grotesk Bold";
   font-weight: bold;
-  src: url("/fonts/alte-haas-grotesk-bold.ttf") format("truetype");
+  src: url($cdn-url + "/fonts/alte-haas-grotesk-bold.ttf") format("truetype");
 }
 
 $main-font: "Alte Haas Grotesk Regular", sans-serif;

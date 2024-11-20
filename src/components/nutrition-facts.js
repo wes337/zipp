@@ -3,6 +3,7 @@
 import { ErrorBoundary } from "react-error-boundary";
 import { IconX } from "@tabler/icons-react";
 import { useNutritionFacts } from "@/lib/state";
+import { CDN_URL } from "@/utils";
 import NutritionFacts3D from "@/components/nutrition-facts-3d";
 import styles from "@/styles/nutrition-facts.module.scss";
 
@@ -20,7 +21,7 @@ export default function NutritionFacts() {
         </ErrorBoundary>
       </div>
       <video className={styles.background} autoPlay playsInline muted loop>
-        <source src={"/videos/can-bg.mp4"} type="video/webm" />
+        <source src={`${CDN_URL}/videos/can-bg.mp4`} type="video/webm" />
       </video>
     </>
   );
@@ -29,7 +30,7 @@ export default function NutritionFacts() {
 function NutritionFactsImage() {
   return (
     <div className={styles.img}>
-      <img src={`/images/nutritional-facts.png`} alt="" />
+      <img src={`${CDN_URL}/images/nutritional-facts.png`} alt="" />
     </div>
   );
 }

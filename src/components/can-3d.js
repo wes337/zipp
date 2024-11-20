@@ -203,7 +203,7 @@ export default function Can3D() {
       </div>
       <div className={styles["can-background"]}>
         <video className={styles.background} autoPlay playsInline muted loop>
-          <source src={"/videos/can-bg.mp4"} type="video/webm" />
+          <source src={`${CDN_URL}/videos/can-bg.mp4`} type="video/webm" />
         </video>
       </div>
     </>

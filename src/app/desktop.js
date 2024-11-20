@@ -1,4 +1,5 @@
 import Shopify from "@/lib/shopify";
+import { CDN_URL } from "@/utils";
 import TopBar from "@/components/top-bar";
 import CanView from "@/components/can-view";
 import Marquee from "@/components/marquee";
@@ -25,16 +26,25 @@ export default function HomeDesktop() {
       <div className={styles.lead}>
         <div className={styles.info}>
           <div className={styles.item}>
-            <img src="/images/real-juice.png" alt="Made With Real Juice" />
+            <img
+              src={`${CDN_URL}/images/real-juice.png`}
+              alt="Made With Real Juice"
+            />
           </div>
           <div className={styles.item}>
-            <img src="/images/natural-colors.png" alt="Natural Colors" />
+            <img
+              src={`${CDN_URL}/images/natural-colors.png`}
+              alt="Natural Colors"
+            />
           </div>
           <div className={styles.item}>
-            <img src="/images/natural-flavors.png" alt="Natural Flavors" />
+            <img
+              src={`${CDN_URL}/images/natural-flavors.png`}
+              alt="Natural Flavors"
+            />
           </div>
           <div className={styles.item}>
-            <img src="/images/bio.png" alt="Bio Delectable" />
+            <img src={`${CDN_URL}/images/bio.png`} alt="Bio Delectable" />
           </div>
         </div>
         <p className={styles.text}>{LEAD_TEXT}</p>

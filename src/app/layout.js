@@ -2,13 +2,14 @@ import Providers from "@/app/providers";
 import Background from "@/components/background";
 import Footer from "@/components/footer";
 import Cursor from "@/components/cursor";
+import { CDN_URL } from "@/utils";
 import "@/styles/globals.scss";
 
 export const metadata = {
   title: "Zipp",
   description:
     "Naturally flavored energy drink. The future of the modern American beverage!",
-  image: "https://www.zipp.rip/images/poster.png",
+  image: `${CDN_URL}/images/poster.png`,
   openGraph: {
     title: "Zipp",
     description:
@@ -17,7 +18,7 @@ export const metadata = {
     siteName: "Zipp",
     images: [
       {
-        url: "https://www.zipp.rip/images/poster.png",
+        url: `${CDN_URL}/images/poster.png`,
         width: 700,
         height: 545,
       },

@@ -1,6 +1,6 @@
 "use client";
 
-import { isIOS, isSafari } from "@/utils";
+import { isIOS, isSafari, CDN_URL } from "@/utils";
 import styles from "@/styles/can.module.scss";
 
 export default function Can() {
@@ -9,7 +9,7 @@ export default function Can() {
   if (useImage) {
     return (
       <div className={styles["can-image"]}>
-        <img src="/images/can.png" alt="" />
+        <img src={`${CDN_URL}/images/can.png`} alt="" />
       </div>
     );
   }
@@ -17,10 +17,10 @@ export default function Can() {
   return (
     <div className={styles.can}>
       <video autoPlay playsInline muted loop>
-        <source src={"/videos/can.webm"} type="video/webm" />
+        <source src={`${CDN_URL}/videos/can.webm`} type="video/webm" />
       </video>
       <video className={styles.background} autoPlay playsInline muted loop>
-        <source src={"/videos/can-bg.mp4"} type="video/webm" />
+        <source src={`${CDN_URL}/videos/can-bg.mp4`} type="video/webm" />
       </video>
     </div>
   );

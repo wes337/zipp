@@ -59,7 +59,7 @@
     width: 100vw;
     z-index: 0;
     background-color: $color-teal;
-    background-image: url("/images/fruits.png");
+    background-image: url($cdn-url + "/images/fruits.png");
     background-size: 200px 56px;
     background-repeat: repeat-x;
     background-position: 0 2px;
