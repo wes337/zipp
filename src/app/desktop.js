@@ -1,10 +1,6 @@
 import Shopify from "@/lib/shopify";
-import { ErrorBoundary } from "react-error-boundary";
-import { IconShoppingCart } from "@tabler/icons-react";
 import TopBar from "@/components/top-bar";
-import Can from "@/components/can";
-import Can3D from "@/components/can-3d";
-import Button from "@/components/button";
+import CanView from "@/components/can2";
 import Marquee from "@/components/marquee";
 import BuyButton from "@/components/buy-button";
 import { LEAD_TEXT } from "./text";
@@ -24,9 +20,7 @@ export default function HomeDesktop() {
         />
       </div>
       <div className={styles.can}>
-        <ErrorBoundary fallback={<Can />}>
-          <Can3D />
-        </ErrorBoundary>
+        <CanView />
       </div>
       <div className={styles.lead}>
         <div className={styles.info}>

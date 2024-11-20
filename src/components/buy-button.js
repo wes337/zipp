@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useNutritionFacts } from "@/lib/state";
 import { IconPlus, IconMinus } from "@tabler/icons-react";
 import { useShopify } from "@/hooks/shopify";
 import { formatPriceInUSD } from "@/utils";
@@ -11,6 +12,7 @@ export default function BuyButton({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const { buyItNow } = useShopify();
+  const { show, hide } = useNutritionFacts();
 
   const productId = product.variants?.[0]?.id || product.id;
 
@@ -59,7 +61,9 @@ export default function BuyButton({ product }) {
             </Button>
           </div>
           <div className={styles.nutrition}>
-            <Button small>Nutrition Facts</Button>
+            <Button small onClick={() => show()}>
+              Nutrition Facts
+            </Button>
           </div>
         </div>
       </div>
@@ -103,7 +107,9 @@ export default function BuyButton({ product }) {
           </div>
         </div>
         <div className={styles.nutrition}>
-          <Button small>Nutrition Facts</Button>
+          <Button small onClick={() => show()}>
+            Nutrition Facts
+          </Button>
         </div>
       </div>
     </>
