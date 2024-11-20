@@ -1,0 +1,16 @@
+@import "@/styles/variables.scss";
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  filter: drop-shadow(1px 1px 0px rgba($color-black, 0.5));
+  z-index: 10;
+
+  @include for-phone {
+    display: none;
+  }
+}

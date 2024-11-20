@@ -1,6 +1,7 @@
 import Providers from "@/app/providers";
 import Background from "@/components/background";
 import Footer from "@/components/footer";
+import Cursor from "@/components/cursor";
 import "@/styles/globals.scss";
 
 export const metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
           <Background />
           <Footer />
         </Providers>
+        {/* <Cursor /> */}
       </body>
     </html>
   );
