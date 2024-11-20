@@ -1,6 +1,6 @@
 import Shopify from "@/lib/shopify";
 import TopBar from "@/components/top-bar";
-import CanView from "@/components/can2";
+import CanView from "@/components/can-view";
 import Marquee from "@/components/marquee";
 import BuyButton from "@/components/buy-button";
 import { LEAD_TEXT } from "./text";

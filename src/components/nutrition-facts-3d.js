@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useRef, useCallback } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { CDN_URL, isVerySmallScreen } from "@/utils";
-import styles from "@/styles/can-3d.module.scss";
+import styles from "@/styles/nutrition-facts-3d.module.scss";
 
 const CAMERA_CONFIG = {
   fov: 60,
@@ -14,20 +13,15 @@ const CAMERA_CONFIG = {
   position: { z: 5 },
 };
 
-const MATERIAL_CONFIG = {
-  roughness: 0.5,
-  metalness: 0.5,
-};
-
 const CONTROLS_CONFIG = {
   enablePan: false,
   enableDamping: true,
-  enableZoom: false,
+  enableZoom: true,
   autoRotate: true,
-  autoRotateSpeed: isVerySmallScreen() ? 0.5 : 0.1,
+  autoRotateSpeed: isVerySmallScreen() ? 0.25 : 0.1,
 };
 
-export default function Can3D() {
+export default function NutritionFacts3D() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const rendererRef = useRef(null);
@@ -94,37 +88,23 @@ export default function Can3D() {
   }, []);
 
   const loadModel = useCallback(async (scene, onLoad) => {
-    const textureLoader = new THREE.TextureLoader();
-    const gltfLoader = new GLTFLoader();
+    const geometry = new THREE.BoxGeometry(1.75, 4, 0.2);
 
-    const texture = await textureLoader.loadAsync(
-      `${CDN_URL}/3d/label-small-dark.png`
-    );
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load(`${CDN_URL}/3d/nutritional-facts.png`);
 
-    gltfLoader.load(`${CDN_URL}/3d/can.glb`, (gltf) => {
-      gltf.scene.traverse((node) => {
-        if (node.isMesh) {
-          node.material.roughness = MATERIAL_CONFIG.roughness;
-          node.material.metalness = MATERIAL_CONFIG.metalness;
-          node.material.needsUpdate = true;
-          node.castShadow = true;
-          node.receiveShadow = true;
-        }
+    const materials = [
+      new THREE.MeshBasicMaterial({ color: "#2a2b2b" }), // right
+      new THREE.MeshBasicMaterial({ color: "#2a2b2b" }), // left
+      new THREE.MeshBasicMaterial({ color: "#444444" }), // top
+      new THREE.MeshBasicMaterial({ color: "#2a2b2b" }), // bottom
+      new THREE.MeshBasicMaterial({ map: texture }), // front
+      new THREE.MeshBasicMaterial({ color: "#3d3d3d" }), // back
+    ];
 
-        if (node.name === "Cylinder001_1") {
-          node.material.map = texture;
-        }
-      });
-
-      if (isVerySmallScreen()) {
-        gltf.scene.scale.set(0.75, 0.75, 0.75);
-      } else {
-        gltf.scene.scale.set(0.9, 0.9, 0.9);
-      }
-
-      scene.add(gltf.scene);
-      onLoad();
-    });
+    const cube = new THREE.Mesh(geometry, materials);
+    scene.add(cube);
+    onLoad();
   }, []);
 
   const animate = useCallback(() => {
@@ -197,15 +177,8 @@ export default function Can3D() {
   ]);
 
   return (
-    <>
-      <div ref={containerRef} className={styles["can-3d"]}>
-        <canvas ref={canvasRef} />
-      </div>
-      <div className={styles["can-background"]}>
-        <video className={styles.background} autoPlay playsInline muted loop>
-          <source src={"/videos/can-bg.mp4"} type="video/webm" />
-        </video>
-      </div>
-    </>
+    <div ref={containerRef} className={styles["nutrition-facts-3d"]}>
+      <canvas ref={canvasRef} />
+    </div>
   );
 }

@@ -12,12 +12,20 @@ export default function BuyButton({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const { buyItNow } = useShopify();
-  const { show, hide } = useNutritionFacts();
+  const { visible, show, hide } = useNutritionFacts();
 
   const productId = product.variants?.[0]?.id || product.id;
 
   const size = product.variants?.[0]?.title || "12 Pack";
   const price = formatPriceInUSD(product.price);
+
+  const toggleNutritionFacts = () => {
+    if (visible) {
+      hide();
+    } else {
+      show();
+    }
+  };
 
   return (
     <>
@@ -61,7 +69,7 @@ export default function BuyButton({ product }) {
             </Button>
           </div>
           <div className={styles.nutrition}>
-            <Button small onClick={() => show()}>
+            <Button small onClick={toggleNutritionFacts}>
               Nutrition Facts
             </Button>
           </div>
@@ -107,7 +115,7 @@ export default function BuyButton({ product }) {
           </div>
         </div>
         <div className={styles.nutrition}>
-          <Button small onClick={() => show()}>
+          <Button small onClick={toggleNutritionFacts}>
             Nutrition Facts
           </Button>
         </div>

@@ -1,4 +1,5 @@
 "use client";
+
 import { ErrorBoundary } from "react-error-boundary";
 import { useNutritionFacts } from "@/lib/state";
 import Can from "@/components/can";
