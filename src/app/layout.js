@@ -9,7 +9,7 @@ export const metadata = {
   title: "Zipp",
   description:
     "Naturally flavored energy drink. The future of the modern American beverage!",
-  image: `${CDN_URL}/images/poster.png`,
+  image: `${CDN_URL}/images/thumbnail.png`,
   openGraph: {
     title: "Zipp",
     description:
@@ -18,7 +18,7 @@ export const metadata = {
     siteName: "Zipp",
     images: [
       {
-        url: `${CDN_URL}/images/poster.png`,
+        url: `${CDN_URL}/images/thumbnail.png`,
         width: 700,
         height: 545,
       },
