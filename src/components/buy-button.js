@@ -65,7 +65,7 @@ export default function BuyButton({ product }) {
               }}
               alt
             >
-              Buy Now
+              Pre-Order
             </Button>
           </div>
           <div className={styles.nutrition}>
@@ -73,6 +73,9 @@ export default function BuyButton({ product }) {
               Nutrition Facts
             </Button>
           </div>
+        </div>
+        <div className={styles.note}>
+          All sales final. Expected delivery: Early December
         </div>
       </div>
       <div className={styles["buy-button-mobile"]}>
@@ -96,6 +99,7 @@ export default function BuyButton({ product }) {
               <IconPlus size={24} />
             </button>
           </div>
+
           <div className={styles.buy}>
             <Button
               onClick={async () => {
@@ -110,7 +114,7 @@ export default function BuyButton({ product }) {
               alt
               small
             >
-              Buy Now
+              Pre-Order
             </Button>
           </div>
         </div>
@@ -118,6 +122,9 @@ export default function BuyButton({ product }) {
           <Button small onClick={toggleNutritionFacts}>
             Nutrition Facts
           </Button>
+        </div>
+        <div className={styles.note}>
+          All sales final. Expected delivery: Early December
         </div>
       </div>
     </>

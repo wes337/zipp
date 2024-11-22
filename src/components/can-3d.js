@@ -98,7 +98,7 @@ export default function Can3D() {
     const gltfLoader = new GLTFLoader();
 
     const texture = await textureLoader.loadAsync(
-      `${CDN_URL}/3d/label-small-dark.png`
+      `${CDN_URL}/3d/label-small-dark-2.png`
     );
 
     gltfLoader.load(`${CDN_URL}/3d/can.glb`, (gltf) => {
@@ -202,7 +202,14 @@ export default function Can3D() {
         <canvas ref={canvasRef} />
       </div>
       <div className={styles["can-background"]}>
-        <video className={styles.background} autoPlay playsInline muted loop>
+        <video
+          className={styles.background}
+          autoPlay={true}
+          playsInline={true}
+          muted={true}
+          controls={false}
+          loop={true}
+        >
           <source src={`${CDN_URL}/videos/can-bg.mp4`} type="video/webm" />
         </video>
       </div>

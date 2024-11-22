@@ -23,4 +23,14 @@
       text-decoration: underline;
     }
   }
+
+  @include for-small-phone {
+    font-size: 0.7rem;
+    letter-spacing: -0.5px;
+
+    a {
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+  }
 }

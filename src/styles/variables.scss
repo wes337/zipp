@@ -51,7 +51,7 @@ $cdn-url: "https://w-img.b-cdn.net/zipp";
 }
 
 @mixin for-thin-desktop {
-  @media (min-width: 800px) and (max-width: 1500px) {
+  @media (min-width: 800px) and (max-width: 1600px) {
     @content;
   }
 }

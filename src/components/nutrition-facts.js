@@ -20,7 +20,14 @@ export default function NutritionFacts() {
           <NutritionFacts3D />
         </ErrorBoundary>
       </div>
-      <video className={styles.background} autoPlay playsInline muted loop>
+      <video
+        className={styles.background}
+        autoPlay={true}
+        playsInline={true}
+        muted={true}
+        controls={false}
+        loop={true}
+      >
         <source src={`${CDN_URL}/videos/can-bg.mp4`} type="video/webm" />
       </video>
     </>

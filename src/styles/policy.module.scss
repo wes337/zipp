@@ -4,6 +4,10 @@
   position: relative;
   padding: 2rem;
 
+  @include for-phone {
+    padding: 0.6rem;
+  }
+
   .title {
     font-family: $main-font-bold;
     text-align: center;
@@ -20,6 +24,11 @@
 
     li {
       margin-left: 4rem;
+    }
+
+    a {
+      color: $color-teal;
+      text-shadow: 2px 2px 0px rgba($color-dark, 0.5);
     }
   }
 }

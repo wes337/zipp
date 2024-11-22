@@ -53,11 +53,21 @@
     width: 100%;
 
     button {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       width: 100%;
       padding: 0.4rem;
       white-space: nowrap;
+      letter-spacing: -0.5px;
     }
+  }
+
+  .note {
+    font-size: 1rem;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.8rem;
   }
 
   .nutrition {
@@ -183,8 +193,10 @@
       max-width: 300px;
 
       button {
+        font-size: 2.2rem;
         white-space: nowrap;
         width: 100%;
+        letter-spacing: -1px;
       }
     }
 
@@ -251,6 +263,19 @@
           white-space: nowrap;
         }
       }
+    }
+  }
+
+  .note {
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    font-style: italic;
+    margin-top: 1rem;
+
+    @include for-thin-desktop {
+      font-size: 1rem;
+      margin-top: 0.4rem;
     }
   }
 }

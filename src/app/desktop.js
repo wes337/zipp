@@ -51,12 +51,6 @@ export default function HomeDesktop() {
         <div className={styles.buy}>
           <BuyButton product={product} />
         </div>
-        {/* <Button onClick={() => {}}>
-          <IconShoppingCart stroke={4} size={40} /> Buy Now
-        </Button> */}
-        {/* <div className={styles.hotline}>
-          <img src="/images/hotline.png" alt="" />
-        </div> */}
       </div>
     </div>
   );
