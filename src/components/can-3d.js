@@ -121,7 +121,7 @@ export default function Can3D() {
 
         gltf.scene.scale.set(scale, scale, scale);
       } else {
-        gltf.scene.scale.set(0.9, 0.9, 0.9);
+        gltf.scene.scale.set(0.95, 0.95, 0.95);
       }
 
       scene.add(gltf.scene);
