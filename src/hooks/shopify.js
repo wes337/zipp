@@ -20,15 +20,15 @@ export function useShopify() {
 
 export function ShopifyProvider(props) {
   const { openToast } = useToast();
-  const [checkout, setCheckout] = useState();
+  //  const [checkout, setCheckout] = useState();
   const [loading, setLoading] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const initialize = async () => {
       setLoading(true);
-      const checkout = await Shopify.getOrCreateCheckout();
-      setCheckout(checkout);
+      // const checkout = await Shopify.getOrCreateCheckout();
+      // setCheckout(checkout);
       setInitialized(true);
       setLoading(false);
     };
@@ -36,72 +36,83 @@ export function ShopifyProvider(props) {
     initialize();
   }, []);
 
-  const totalItemsInCheckout = useMemo(() => {
-    if (!checkout || checkout.lineItems.length === 0) {
-      return 0;
-    }
+  // const totalItemsInCheckout = useMemo(() => {
+  //   if (!checkout || checkout.lineItems.length === 0) {
+  //     return 0;
+  //   }
 
-    let total = 0;
+  //   let total = 0;
 
-    checkout.lineItems.forEach((lineItem) => {
-      total += lineItem.quantity;
-    });
+  //   checkout.lineItems.forEach((lineItem) => {
+  //     total += lineItem.quantity;
+  //   });
 
-    return total;
-  }, [checkout]);
+  //   return total;
+  // }, [checkout]);
 
-  const addToCart = useCallback(
-    async (variantId, quantity) => {
-      if (!checkout) {
-        return;
-      }
+  // const addToCart = useCallback(
+  //   async (variantId, quantity) => {
+  //     if (!checkout) {
+  //       return;
+  //     }
 
-      setLoading(true);
+  //     setLoading(true);
 
-      const shouldUpdate =
-        checkout.lineItems.length > 0 &&
-        checkout.lineItems.find((lineItem) => lineItem.variantId === variantId);
+  //     const shouldUpdate =
+  //       checkout.lineItems.length > 0 &&
+  //       checkout.lineItems.find((lineItem) => lineItem.variantId === variantId);
 
-      const updatedCheckout = shouldUpdate
-        ? await Shopify.updateLineItems(checkout.id, variantId, quantity)
-        : await Shopify.addLineItems(checkout.id, variantId, quantity);
+  //     const updatedCheckout = shouldUpdate
+  //       ? await Shopify.updateLineItems(checkout.id, variantId, quantity)
+  //       : await Shopify.addLineItems(checkout.id, variantId, quantity);
 
-      setCheckout(updatedCheckout);
-      setLoading(false);
-      openToast({
-        text: "Item was added to your cart!",
-        action: { text: "Go To Checkout!", href: "/cart" },
-      });
-    },
-    [checkout, openToast]
-  );
+  //     setCheckout(updatedCheckout);
+  //     setLoading(false);
+  //     openToast({
+  //       text: "Item was added to your cart!",
+  //       action: { text: "Go To Checkout!", href: "/cart" },
+  //     });
+  //   },
+  //   [checkout, openToast]
+  // );
 
-  const removeFromCart = useCallback(
-    async (lineItemId) => {
-      if (!checkout) {
-        return;
-      }
+  // const removeFromCart = useCallback(
+  //   async (lineItemId) => {
+  //     if (!checkout) {
+  //       return;
+  //     }
 
-      setLoading(true);
+  //     setLoading(true);
 
-      const updatedCheckout = await Shopify.removeLineItems(
-        checkout.id,
-        lineItemId
-      );
+  //     const updatedCheckout = await Shopify.removeLineItems(
+  //       checkout.id,
+  //       lineItemId
+  //     );
 
-      setCheckout(updatedCheckout);
-      setLoading(false);
-      openToast({ text: "Item was removed from your cart!" });
-    },
-    [checkout, openToast]
-  );
+  //     setCheckout(updatedCheckout);
+  //     setLoading(false);
+  //     openToast({ text: "Item was removed from your cart!" });
+  //   },
+  //   [checkout, openToast]
+  // );
 
   const buyItNow = useCallback(async (variantId, quantity = 1) => {
     setLoading(true);
 
-    const newCheckout = await Shopify.createCheckout();
-    await Shopify.addLineItems(newCheckout.id, variantId, quantity);
-    window.location.href = newCheckout.webUrl;
+    const checkout = await Shopify.getOrCreateCheckout();
+
+    const lineItemIdsToRemove =
+      checkout?.lineItems?.map?.((lineItem) => lineItem.id) || [];
+
+    if (lineItemIdsToRemove.length > 0) {
+      await Shopify.client.checkout.removeLineItems(
+        checkout.id,
+        lineItemIdsToRemove
+      );
+    }
+
+    await Shopify.addLineItems(checkout.id, variantId, quantity);
+    window.location.href = checkout.webUrl;
 
     setLoading(false);
   }, []);
@@ -127,13 +138,13 @@ export function ShopifyProvider(props) {
   }, []);
 
   const value = {
-    checkout,
+    //  checkout,
     initialized,
-    totalItemsInCheckout,
-    addToCart,
+    //  totalItemsInCheckout,
+    //  addToCart,
     buyItNow,
     loading,
-    removeFromCart,
+    //  removeFromCart,
     getPrices,
   };
 
