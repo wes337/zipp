@@ -1,3 +1,83 @@
-@import "./colors.scss";
-@import "./breakpoints.scss";
-@import "./fonts.scss";
+$color-white: #ffffff;
+$color-black: #000000;
+$color-dark: #2a2b2b;
+$color-teal: #92cdf8;
+$color-blue: #206da2;
+$color-red: #f70d10;
+$color-green: #8cde4b;
+
+$screen-size-xxs: 400px;
+$screen-size-xs: 600px;
+$screen-size-sm: 1100px;
+$screen-size-md: 2000px;
+$screen-size-lg: 2500px;
+
+$cdn-url: "https://w-img.b-cdn.net/zipp";
+
+@mixin for-phone {
+  @media (max-width: 800px) {
+    @content;
+  }
+}
+
+@mixin for-small-phone {
+  @media (max-width: 376px) {
+    @content;
+  }
+}
+
+@mixin for-short-desktop {
+  @media (min-width: 1000px) and (max-height: 950px) {
+    @content;
+  }
+}
+
+@mixin for-narrow-desktop {
+  @media (max-width: 1400px) and (min-height: 1000px) {
+    @content;
+  }
+}
+
+@mixin for-large-desktop {
+  @media (min-width: 2000px) {
+    @content;
+  }
+}
+
+@mixin for-desktop {
+  @media (min-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin for-thin-desktop {
+  @media (min-width: 800px) and (max-width: 1600px) {
+    @content;
+  }
+}
+
+@font-face {
+  font-family: "Hydrophilia Iced";
+  src: url($cdn-url + "/fonts/hydrophilia-iced.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Alte Haas Grotesk Regular";
+  src: url($cdn-url + "/fonts/alte-haas-grotesk-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Orbitron Black";
+  src: url($cdn-url + "/fonts/orbitron-black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Alte Haas Grotesk Bold";
+  font-weight: bold;
+  src: url($cdn-url + "/fonts/alte-haas-grotesk-bold.ttf") format("truetype");
+}
+
+$main-font: "Alte Haas Grotesk Regular", sans-serif;
+$main-font-bold: "Alte Haas Grotesk Bold", sans-serif;
+$pixel-font: "Hydrophilia Iced", monospace;
+$secondary-font: "Orbitron Black";

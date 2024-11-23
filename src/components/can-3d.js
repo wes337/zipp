@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { CDN_URL, isVerySmallScreen } from "@/utils";
+import { CDN_URL, IS_LIVE, isVerySmallScreen } from "@/utils";
 import styles from "@/styles/can-3d.module.scss";
 
 const CAMERA_CONFIG = {
@@ -15,8 +15,8 @@ const CAMERA_CONFIG = {
 };
 
 const MATERIAL_CONFIG = {
-  roughness: 0.1,
-  metalness: 0.75,
+  roughness: 0.3,
+  metalness: 0.5,
 };
 
 const CONTROLS_CONFIG = {
@@ -65,7 +65,7 @@ export default function Can3D() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
@@ -98,7 +98,7 @@ export default function Can3D() {
     const gltfLoader = new GLTFLoader();
 
     const texture = await textureLoader.loadAsync(
-      `${CDN_URL}/3d/texture-3.png`
+      `${CDN_URL}/3d/label-small-dark-2.png`
     );
 
     gltfLoader.load(`${CDN_URL}/3d/can.glb`, (gltf) => {
@@ -117,7 +117,11 @@ export default function Can3D() {
       });
 
       if (isVerySmallScreen()) {
-        gltf.scene.scale.set(0.9, 0.9, 0.9);
+        const scale = IS_LIVE ? 0.75 : 0.8;
+
+        gltf.scene.scale.set(scale, scale, scale);
+      } else {
+        gltf.scene.scale.set(0.95, 0.95, 0.95);
       }
 
       scene.add(gltf.scene);
@@ -200,8 +204,15 @@ export default function Can3D() {
         <canvas ref={canvasRef} />
       </div>
       <div className={styles["can-background"]}>
-        <video className={styles.background} autoPlay playsInline muted loop>
-          <source src={"/videos/can-bg.mp4"} type="video/webm" />
+        <video
+          className={styles.background}
+          autoPlay={true}
+          playsInline={true}
+          muted={true}
+          controls={false}
+          loop={true}
+        >
+          <source src={`${CDN_URL}/videos/can-bg.mp4`} type="video/webm" />
         </video>
       </div>
     </>

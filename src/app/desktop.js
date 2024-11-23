@@ -1,10 +1,15 @@
-import { IconShoppingCart } from "@tabler/icons-react";
+import Shopify from "@/lib/shopify";
+import { CDN_URL, IS_LIVE } from "@/utils";
 import TopBar from "@/components/top-bar";
-import Can3D from "@/components/can-3d";
-import Button from "@/components/button";
+import CanView from "@/components/can-view";
 import Marquee from "@/components/marquee";
+import BuyButton from "@/components/buy-button";
 import { LEAD_TEXT } from "./text";
 import styles from "@/styles/home-desktop.module.scss";
+import Button from "@/components/button";
+
+const PRODUCT_ID = "gid://shopify/Product/7648749420578";
+const product = await Shopify.getProduct(PRODUCT_ID);
 
 export default function HomeDesktop() {
   return (
@@ -17,30 +22,42 @@ export default function HomeDesktop() {
         />
       </div>
       <div className={styles.can}>
-        <Can3D />
+        <CanView />
       </div>
       <div className={styles.lead}>
         <div className={styles.info}>
           <div className={styles.item}>
-            <img src="/images/real-juice.png" alt="Made With Real Juice" />
+            <img
+              src={`${CDN_URL}/images/real-juice.png`}
+              alt="Made With Real Juice"
+            />
           </div>
           <div className={styles.item}>
-            <img src="/images/natural-colors.png" alt="Natural Colors" />
+            <img
+              src={`${CDN_URL}/images/natural-colors.png`}
+              alt="Natural Colors"
+            />
           </div>
           <div className={styles.item}>
-            <img src="/images/natural-flavors.png" alt="Natural Flavors" />
+            <img
+              src={`${CDN_URL}/images/natural-flavors.png`}
+              alt="Natural Flavors"
+            />
           </div>
           <div className={styles.item}>
-            <img src="/images/bio.png" alt="Bio Delectable" />
+            <img src={`${CDN_URL}/images/bio.png`} alt="Bio Delectable" />
           </div>
         </div>
         <p className={styles.text}>{LEAD_TEXT}</p>
-        <Button>
-          <IconShoppingCart stroke={4} size={40} /> Coming Soon
-        </Button>
-        <div className={styles.hotline}>
-          <img src="/images/hotline.png" alt="" />
-        </div>
+        {IS_LIVE ? (
+          <div className={styles.buy}>
+            <BuyButton product={product} />
+          </div>
+        ) : (
+          <div className={`${styles.buy} ${styles.soon}`}>
+            <Button>Coming Soon</Button>
+          </div>
+        )}
       </div>
     </div>
   );

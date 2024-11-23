@@ -77,7 +77,21 @@ export default class Shopify {
   static async getProduct(productId) {
     const product = await Shopify.client.product.fetch(productId);
 
-    return product;
+    return {
+      id: product.id,
+      availableForSale: product.availableForSale,
+      createdAt: product.createdAt,
+      updatedAt: product.updatedAt,
+      descriptionHtml: product.descriptionHtml,
+      description: product.description,
+      handle: product.handle,
+      title: product.title,
+      variants: product.variants.map((variant) => ({
+        id: variant.id,
+        title: variant.title,
+      })),
+      price: product.variants?.[0]?.price?.amount,
+    };
   }
 
   static async getCheckout(checkoutId) {

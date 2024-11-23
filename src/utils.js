@@ -1,5 +1,7 @@
 export const CDN_URL = "https://w-img.b-cdn.net/zipp";
 
+export const IS_LIVE = false;
+
 export const detectBrowser = () => {
   try {
     let userAgent = navigator.userAgent;
@@ -92,6 +94,14 @@ export const isVerySmallScreen = () => {
   }
 };
 
+export const isMobileSizedScreen = () => {
+  try {
+    return window.innerWidth <= 1000;
+  } catch {
+    return false;
+  }
+};
+
 var debounceTimer;
 export const debounce = (fn, delay) => {
   return () => {
@@ -99,3 +109,22 @@ export const debounce = (fn, delay) => {
     debounceTimer = setTimeout(() => fn.apply(this, arguments), delay);
   };
 };
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+export function formatPriceInUSD(amount) {
+  return currencyFormatter.format(amount);
+}
+
+export function toCamelCase(text) {
+  return text.replace(/-([a-z])/g, (t) => {
+    return t[1].toUpperCase();
+  });
+}
+
+export function randomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}

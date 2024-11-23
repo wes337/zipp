@@ -1,0 +1,86 @@
+@import "@/styles/variables.scss";
+
+.music-player-button {
+  all: unset;
+  cursor: pointer;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: var(--top-bar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.8rem;
+  z-index: 6;
+
+  color: $color-dark;
+  opacity: 0.9;
+
+  @include for-phone {
+    padding: 0 1rem;
+    opacity: 0.7;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-teal;
+    opacity: 1;
+  }
+}
+
+.music-player {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  background-color: $color-white;
+  font-family: $main-font;
+
+  transform: translateY(-120%);
+
+  &.show {
+    transform: translateY(0);
+  }
+
+  .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+      text-align: center;
+      font-family: $main-font-bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      max-width: calc(100% - 60px);
+
+      @include for-phone {
+        font-size: 1.2rem;
+        letter-spacing: -0.25px;
+      }
+    }
+
+    .close {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      border-radius: 0.4rem;
+      background-color: rgba($color-dark, 0.1);
+
+      &:hover {
+        color: $color-teal;
+        outline: 0.15rem solid $color-teal;
+      }
+    }
+  }
+}
