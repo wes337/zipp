@@ -42,9 +42,14 @@
       all: unset;
       font-family: $main-font-bold;
       font-size: 2rem;
+      line-height: 2.2rem;
       letter-spacing: -0.5px;
       padding: 0 2rem;
       text-shadow: 0 0 0.4rem rgba($color-dark, 0.1);
+
+      @include for-large-desktop {
+        line-height: 2.4rem;
+      }
 
       @include for-short-desktop {
         font-size: 1.4rem;
@@ -107,9 +112,32 @@
 
       width: 100%;
 
+      @include for-short-desktop {
+        &.soon {
+          padding-top: 0rem;
+
+          button {
+            padding: 0.2rem 2rem;
+            font-size: 1.6rem;
+          }
+        }
+      }
+
       @include for-thin-desktop {
         margin-top: 1rem;
         margin-left: 1rem;
+
+        &.soon {
+          padding-right: 4rem;
+          padding-top: 1rem;
+
+          button {
+            border-width: 0.4rem;
+            padding: 0.4rem 1rem;
+            width: 100%;
+            font-size: 2rem;
+          }
+        }
       }
     }
   }

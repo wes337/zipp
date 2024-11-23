@@ -1,7 +1,7 @@
 import Providers from "@/app/providers";
 import Background from "@/components/background";
 import Footer from "@/components/footer";
-import Cursor from "@/components/cursor";
+import MusicPlayer from "@/components/music-player";
 import { CDN_URL } from "@/utils";
 import "@/styles/globals.scss";
 
@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Providers>
+          <MusicPlayer />
           <main>{children}</main>
           <Background />
           <Footer />

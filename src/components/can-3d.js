@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { CDN_URL, isVerySmallScreen } from "@/utils";
+import { CDN_URL, IS_LIVE, isVerySmallScreen } from "@/utils";
 import styles from "@/styles/can-3d.module.scss";
 
 const CAMERA_CONFIG = {
@@ -15,7 +15,7 @@ const CAMERA_CONFIG = {
 };
 
 const MATERIAL_CONFIG = {
-  roughness: 0.5,
+  roughness: 0.3,
   metalness: 0.5,
 };
 
@@ -117,7 +117,9 @@ export default function Can3D() {
       });
 
       if (isVerySmallScreen()) {
-        gltf.scene.scale.set(0.75, 0.75, 0.75);
+        const scale = IS_LIVE ? 0.75 : 0.8;
+
+        gltf.scene.scale.set(scale, scale, scale);
       } else {
         gltf.scene.scale.set(0.9, 0.9, 0.9);
       }

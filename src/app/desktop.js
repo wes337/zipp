@@ -1,11 +1,12 @@
 import Shopify from "@/lib/shopify";
-import { CDN_URL } from "@/utils";
+import { CDN_URL, IS_LIVE } from "@/utils";
 import TopBar from "@/components/top-bar";
 import CanView from "@/components/can-view";
 import Marquee from "@/components/marquee";
 import BuyButton from "@/components/buy-button";
 import { LEAD_TEXT } from "./text";
 import styles from "@/styles/home-desktop.module.scss";
+import Button from "@/components/button";
 
 const PRODUCT_ID = "gid://shopify/Product/7648749420578";
 const product = await Shopify.getProduct(PRODUCT_ID);
@@ -48,9 +49,15 @@ export default function HomeDesktop() {
           </div>
         </div>
         <p className={styles.text}>{LEAD_TEXT}</p>
-        <div className={styles.buy}>
-          <BuyButton product={product} />
-        </div>
+        {IS_LIVE ? (
+          <div className={styles.buy}>
+            <BuyButton product={product} />
+          </div>
+        ) : (
+          <div className={`${styles.buy} ${styles.soon}`}>
+            <Button>Coming Soon</Button>
+          </div>
+        )}
       </div>
     </div>
   );

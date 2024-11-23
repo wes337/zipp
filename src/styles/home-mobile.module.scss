@@ -26,25 +26,41 @@
 
   .info {
     position: fixed;
-    bottom: 0;
+    bottom: 120px;
     left: 0;
     width: 100%;
     height: auto;
     padding: 1rem;
     display: flex;
-    justify-content: center;
-    z-index: 2;
+    justify-content: space-around;
+    z-index: 4;
     gap: 1rem;
+    pointer-events: none;
 
     .item {
-      transition: transform ease 0.2s;
-
       img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         max-width: 140px;
+
+        @include for-phone {
+          max-width: 100px;
+        }
+
+        @include for-small-phone {
+          max-width: 60px;
+        }
       }
+    }
+
+    @include for-phone {
+      padding-bottom: 1.4rem;
+    }
+
+    @include for-small-phone {
+      padding: 0;
+      padding-bottom: 0.4rem;
     }
   }
 
@@ -68,10 +84,12 @@
   }
 
   .soon {
-    position: fixed;
-    top: calc(var(--top-bar-height) + 1rem);
-    left: 0;
-    z-index: 1;
-    width: 100%;
+    display: flex;
+    padding: 0 1rem;
+
+    button {
+      user-select: none;
+      width: 100%;
+    }
   }
 }

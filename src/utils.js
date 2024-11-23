@@ -1,5 +1,7 @@
 export const CDN_URL = "https://w-img.b-cdn.net/zipp";
 
+export const IS_LIVE = false;
+
 export const detectBrowser = () => {
   try {
     let userAgent = navigator.userAgent;
@@ -121,4 +123,8 @@ export function toCamelCase(text) {
   return text.replace(/-([a-z])/g, (t) => {
     return t[1].toUpperCase();
   });
+}
+
+export function randomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }

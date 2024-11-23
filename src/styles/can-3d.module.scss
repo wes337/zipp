@@ -21,7 +21,12 @@
   }
 
   @include for-small-phone {
-    top: -6%;
+    top: -4%;
+  }
+
+  @include for-thin-desktop {
+    width: 50%;
+    transform: translate(-25%);
   }
 }
 
