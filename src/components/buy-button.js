@@ -75,7 +75,7 @@ export default function BuyButton({ product }) {
           </div>
         </div>
         <div className={styles.note}>
-          All sales final. Expected delivery: Early December
+          All sales final. Expected delivery: Early January
         </div>
       </div>
       <div className={styles["buy-button-mobile"]}>
@@ -124,7 +124,7 @@ export default function BuyButton({ product }) {
           </Button>
         </div>
         <div className={styles.note}>
-          All sales final. Expected delivery: Early December
+          All sales final. Expected delivery: Early January
         </div>
       </div>
     </>
