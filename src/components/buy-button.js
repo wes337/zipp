@@ -75,7 +75,8 @@ export default function BuyButton({ product }) {
           </div>
         </div>
         <div className={styles.note}>
-          All sales final. Expected delivery: Early January
+          All sales final. Expected delivery: Early January <br />
+          U.S. Shipping Only
         </div>
       </div>
       <div className={styles["buy-button-mobile"]}>
@@ -99,7 +100,6 @@ export default function BuyButton({ product }) {
               <IconPlus size={24} />
             </button>
           </div>
-
           <div className={styles.buy}>
             <Button
               onClick={async () => {
@@ -125,6 +125,8 @@ export default function BuyButton({ product }) {
         </div>
         <div className={styles.note}>
           All sales final. Expected delivery: Early January
+          <br />
+          <strong>U.S. Shipping Only</strong>
         </div>
       </div>
     </>
