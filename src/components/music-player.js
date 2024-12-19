@@ -115,7 +115,6 @@ const playlist = [
   "ry - untirtled#1.mp3",
   "ry - untitled#23.mp3",
   "ry - untitled#28.mp3",
-  "script.js",
   "Sigma- Antonios Delight.mp3",
   "teckdeck - headache.mp3",
   "TESTSURGER.mp3",
