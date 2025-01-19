@@ -83,54 +83,54 @@ export default function BuyButton({ product }) {
           <>
             <div className={styles.size}>{size}</div>
             <div className={styles.price}>{price}</div>
+            <div className={styles.row}>
+              <div className={styles.quantity}>
+                <button
+                  onClick={() =>
+                    setQuantity((quantity) => Math.max(quantity - 1, 1))
+                  }
+                >
+                  <IconMinus size={24} />
+                </button>
+                <span>{quantity}</span>
+                <button
+                  onClick={() =>
+                    setQuantity((quantity) => Math.min(quantity + 1, 10))
+                  }
+                >
+                  <IconPlus size={24} />
+                </button>
+              </div>
+              <div className={styles.buy}>
+                <Button
+                  onClick={async () => {
+                    if (loading) {
+                      return;
+                    }
+
+                    setLoading(true);
+                    await buyItNow(productId, quantity);
+                    setLoading(false);
+                  }}
+                  alt
+                  small
+                >
+                  Pre-Order
+                </Button>
+              </div>
+            </div>
+            <div className={styles.nutrition}>
+              <Button small onClick={toggleNutritionFacts}>
+                Nutrition Facts
+              </Button>
+            </div>
+            <a className={styles.note} href="/support">
+              All sales final. Expected delivery: Early February
+              <br />
+              <strong>U.S. Shipping Only</strong>
+            </a>
           </>
         )}
-        <div className={styles.row}>
-          <div className={styles.quantity}>
-            <button
-              onClick={() =>
-                setQuantity((quantity) => Math.max(quantity - 1, 1))
-              }
-            >
-              <IconMinus size={24} />
-            </button>
-            <span>{quantity}</span>
-            <button
-              onClick={() =>
-                setQuantity((quantity) => Math.min(quantity + 1, 10))
-              }
-            >
-              <IconPlus size={24} />
-            </button>
-          </div>
-          <div className={styles.buy}>
-            <Button
-              onClick={async () => {
-                if (loading) {
-                  return;
-                }
-
-                setLoading(true);
-                await buyItNow(productId, quantity);
-                setLoading(false);
-              }}
-              alt
-              small
-            >
-              Pre-Order
-            </Button>
-          </div>
-        </div>
-        <div className={styles.nutrition}>
-          <Button small onClick={toggleNutritionFacts}>
-            Nutrition Facts
-          </Button>
-        </div>
-        <a className={styles.note} href="/support">
-          All sales final. Expected delivery: Early February
-          <br />
-          <strong>U.S. Shipping Only</strong>
-        </a>
       </div>
     </>
   );
