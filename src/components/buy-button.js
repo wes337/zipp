@@ -74,14 +74,17 @@ export default function BuyButton({ product }) {
             </Button>
           </div>
         </div>
-        <div className={styles.note}>
-          All sales final. Expected delivery: Early January <br />
-          U.S. Shipping Only
-        </div>
+        <a className={styles.note} href="/support">
+          All sales final. Expected delivery: Early February. U.S. Shipping Only
+        </a>
       </div>
       <div className={styles["buy-button-mobile"]}>
-        <div className={styles.size}>{size}</div>
-        <div className={styles.price}>{price}</div>
+        {!visible && (
+          <>
+            <div className={styles.size}>{size}</div>
+            <div className={styles.price}>{price}</div>
+          </>
+        )}
         <div className={styles.row}>
           <div className={styles.quantity}>
             <button
@@ -123,11 +126,11 @@ export default function BuyButton({ product }) {
             Nutrition Facts
           </Button>
         </div>
-        <div className={styles.note}>
-          All sales final. Expected delivery: Early January
+        <a className={styles.note} href="/support">
+          All sales final. Expected delivery: Early February
           <br />
           <strong>U.S. Shipping Only</strong>
-        </div>
+        </a>
       </div>
     </>
   );

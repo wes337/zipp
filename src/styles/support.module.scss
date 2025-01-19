@@ -1,0 +1,41 @@
+@import "@/styles/variables.scss";
+
+.support {
+  position: relative;
+  padding: 2rem;
+
+  max-width: 1000px;
+  margin: auto;
+
+  @include for-phone {
+    padding: 0.6rem;
+  }
+
+  .title {
+    font-family: $main-font-bold;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: $color-white;
+    border-radius: 0.6rem;
+    padding: 1rem;
+
+    li {
+      margin-left: 4rem;
+    }
+
+    a {
+      font-weight: 800;
+      color: darken($color-teal, 20%);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

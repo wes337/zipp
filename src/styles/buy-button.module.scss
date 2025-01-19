@@ -83,6 +83,11 @@
     strong {
       text-transform: uppercase;
     }
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   .nutrition {
@@ -287,6 +292,11 @@
     white-space: nowrap;
     font-style: italic;
     margin-top: 1rem;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
 
     @include for-thin-desktop {
       font-size: 1rem;
