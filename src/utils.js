@@ -1,6 +1,6 @@
 export const CDN_URL = "https://w-img.b-cdn.net/zipp";
 
-export const IS_LIVE = true;
+export const IS_LIVE = false;
 
 export const detectBrowser = () => {
   try {

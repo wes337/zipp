@@ -53,7 +53,8 @@ export default function HomeMobile() {
             </div>
           </div>
           <div className={`${styles.buy} ${styles.soon}`}>
-            <Button>Coming Soon</Button>
+            <Button>Pre-Orders Closed</Button>
+            <Button>Grand Opening In April</Button>
           </div>
         </>
       )}

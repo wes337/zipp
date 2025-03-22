@@ -112,6 +112,19 @@
 
       width: 100%;
 
+      button {
+        &:nth-child(2) {
+          margin-top: 8px;
+          margin-left: 7rem;
+          margin-right: auto;
+          padding: 1rem 0;
+          width: 50%;
+          font-size: 1.6rem;
+          color: $color-white;
+          background-color: rgba(darken($color-teal, 10%), 0.5);
+        }
+      }
+
       @include for-short-desktop {
         &.soon {
           padding-top: 0rem;
@@ -119,6 +132,7 @@
           button {
             padding: 0.2rem 2rem;
             font-size: 1.6rem;
+            margin-left: 0;
           }
         }
       }
@@ -134,8 +148,13 @@
           button {
             border-width: 0.4rem;
             padding: 0.4rem 1rem;
-            width: 100%;
+
             font-size: 2rem;
+
+            &:nth-child(2) {
+              width: auto;
+              white-space: nowrap;
+            }
           }
         }
       }

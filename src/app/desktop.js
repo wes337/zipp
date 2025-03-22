@@ -55,7 +55,8 @@ export default function HomeDesktop() {
           </div>
         ) : (
           <div className={`${styles.buy} ${styles.soon}`}>
-            <Button>Coming Soon</Button>
+            <Button>Pre-Order Closed</Button>
+            <Button>Grand Opening In April</Button>
           </div>
         )}
       </div>
