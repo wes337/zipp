@@ -4,9 +4,9 @@ import TopBar from "@/components/top-bar";
 import CanView from "@/components/can-view";
 import Marquee from "@/components/marquee";
 import BuyButton from "@/components/buy-button";
+import Button from "@/components/button";
 import { LEAD_TEXT } from "./text";
 import styles from "@/styles/home-desktop.module.scss";
-import Button from "@/components/button";
 
 const PRODUCT_ID = "gid://shopify/Product/7648749420578";
 const product = await Shopify.getProduct(PRODUCT_ID);

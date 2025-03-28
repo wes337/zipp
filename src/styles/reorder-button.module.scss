@@ -1,0 +1,22 @@
+@import "@/styles/variables.scss";
+
+.reorderButton {
+  button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $secondary-font;
+    cursor: pointer;
+    background-color: $color-white;
+    border: 0.8rem solid $color-teal;
+    padding: 1rem 3rem;
+    border-radius: 3rem;
+    color: $color-teal;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 3rem;
+    gap: 0.6rem;
+    text-align: center;
+  }
+}

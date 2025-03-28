@@ -32,6 +32,13 @@ export default function MusicPlayer() {
     [currentTrack]
   );
 
+  if (
+    typeof window !== "undefined" &&
+    window.location.pathname.match(/reorder/)
+  ) {
+    return null;
+  }
+
   return (
     <>
       <button
